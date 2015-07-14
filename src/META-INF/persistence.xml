@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="RS_Project">
+		<class>models.Buildings</class>
+		<class>models.CourseInstructors</class>
+		<class>models.Courses</class>
+		<class>models.Departments</class>
+		<class>models.FacultyPersonel</class>
+		<class>models.Groups</class>
+		<class>models.Reservations</class>
+		<class>models.Roles</class>
+		<class>models.Rooms</class>
+		<class>models.Semesters</class>
+		<class>models.Students</class>
+		<class>models.StudentsGroups</class>
+		<class>models.TimeSlots</class>
+	</persistence-unit>
+</persistence>

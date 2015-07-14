@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Telosys Database Repository --><root>
+<tableList databaseId="0" databaseName="MYSQL" databaseProductName="MySQL" generation="2015-07-14 20:47:27">
+<table catalog="rs_project" databaseType="TABLE" javaBean="Buildings" name="buildings" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="Id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="Name" dbNotNull="true" dbPosition="2" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK__buildings" id="LINK_FK_FK__buildings_I" inverseSideOf="LINK_FK_FK__buildings_O" javaName="listOfRooms" javaType="java.util.List" joinTableName="" mappedBy="buildings" optional="UNDEFINED" owningSide="false" sourceTableName="buildings" targetEntity="Rooms" targetTableName="rooms" used="true"/>
+</table>
+<table catalog="rs_project" databaseType="TABLE" javaBean="CourseInstructors" name="course_instructors" schema="">
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="InstructorId" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="instructorid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Instructorid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="CourseId" dbNotNull="true" dbPosition="2" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="courseid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Courseid" notNull="true" selected="true"/>
+<fk name="FK_course_instructors_courses">
+<fkcol colname="CourseId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="course_instructors" tableref="courses" updaterule="3"/>
+</fk>
+<fk name="FK_course_instructors_faculty_personel">
+<fkcol colname="InstructorId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="course_instructors" tableref="faculty_personel" updaterule="3"/>
+</fk>
+</table>
+<table catalog="rs_project" databaseType="TABLE" javaBean="Courses" name="courses" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="Id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="0" dbName="Name" dbNotNull="true" dbPosition="2" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="1" dbName="Required" dbNotNull="true" dbPosition="3" dbSize="3" dbTypeName="TINYINT" inputType="number" javaName="required" javaType="java.lang.Byte" jdbcTypeCode="-6" label="Required" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="NoLectures" dbNotNull="false" dbPosition="4" dbSize="3" dbTypeName="TINYINT" inputType="number" javaName="nolectures" javaType="java.lang.Byte" jdbcTypeCode="-6" label="Nolectures" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="NoAudit" dbNotNull="false" dbPosition="5" dbSize="3" dbTypeName="TINYINT" inputType="number" javaName="noaudit" javaType="java.lang.Byte" jdbcTypeCode="-6" label="Noaudit" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="NoLab" dbNotNull="false" dbPosition="6" dbSize="3" dbTypeName="TINYINT" inputType="number" javaName="nolab" javaType="java.lang.Byte" jdbcTypeCode="-6" label="Nolab" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="SemesterId" dbNotNull="true" dbPosition="7" dbSize="10" dbTypeName="INT" inputType="number" javaName="semesterid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Semesterid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="DepartmentId" dbNotNull="true" dbPosition="8" dbSize="10" dbTypeName="INT" inputType="number" javaName="departmentid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Departmentid" notNull="true" selected="true"/>
+<fk name="FK__departments">
+<fkcol colname="DepartmentId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="courses" tableref="departments" updaterule="3"/>
+</fk>
+<fk name="FK__semesters">
+<fkcol colname="SemesterId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="courses" tableref="semesters" updaterule="3"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK__semesters" id="LINK_FK_FK__semesters_O" inverseSideOf="" javaName="semesters" javaType="Semesters" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="courses" targetEntity="Semesters" targetTableName="semesters" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="SemesterId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK__departments" id="LINK_FK_FK__departments_O" inverseSideOf="" javaName="departments" javaType="Departments" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="courses" targetEntity="Departments" targetTableName="departments" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="DepartmentId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_groups_courses" id="LINK_FK_FK_groups_courses_I" inverseSideOf="LINK_FK_FK_groups_courses_O" javaName="listOfGroups" javaType="java.util.List" joinTableName="" mappedBy="courses" optional="UNDEFINED" owningSide="false" sourceTableName="courses" targetEntity="Groups" targetTableName="groups" used="true"/>
+<link cardinality="ManyToMany" cascade="" fetch="DEFAULT" foreignKeyName="" id="LINK_JT_course_instructors_O" inverseSideOf="" javaName="listOfFacultyPersonel" javaType="java.util.List" joinTableName="course_instructors" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="courses" targetEntity="FacultyPersonel" targetTableName="faculty_personel" used="true">
+<joinTable name="course_instructors">
+<joinColumns>
+<joinColumn insertable="false" name="CourseId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+<inverseJoinColumns>
+<joinColumn insertable="false" name="InstructorId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</inverseJoinColumns>
+</joinTable>
+</link>
+</table>
+<table catalog="rs_project" databaseType="TABLE" javaBean="Departments" name="departments" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="Id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="Name" dbNotNull="true" dbPosition="2" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="DepartmentChiefId" dbNotNull="false" dbPosition="3" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="departmentchiefid" javaType="java.lang.String" jdbcTypeCode="12" label="Departmentchiefid" maxLength="50" notNull="false" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK__departments" id="LINK_FK_FK__departments_I" inverseSideOf="LINK_FK_FK__departments_O" javaName="listOfCourses" javaType="java.util.List" joinTableName="" mappedBy="departments" optional="UNDEFINED" owningSide="false" sourceTableName="departments" targetEntity="Courses" targetTableName="courses" used="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_students_departments" id="LINK_FK_FK_students_departments_I" inverseSideOf="LINK_FK_FK_students_departments_O" javaName="listOfStudents" javaType="java.util.List" joinTableName="" mappedBy="departments" optional="UNDEFINED" owningSide="false" sourceTableName="departments" targetEntity="Students" targetTableName="students" used="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_faculty_personel_departments" id="LINK_FK_FK_faculty_personel_departments_I" inverseSideOf="LINK_FK_FK_faculty_personel_departments_O" javaName="listOfFacultyPersonel" javaType="java.util.List" joinTableName="" mappedBy="departments" optional="UNDEFINED" owningSide="false" sourceTableName="departments" targetEntity="FacultyPersonel" targetTableName="faculty_personel" used="true"/>
+</table>
+<table catalog="rs_project" databaseType="TABLE" javaBean="FacultyPersonel" name="faculty_personel" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="Id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="Username" dbNotNull="true" dbPosition="2" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="username" javaType="java.lang.String" jdbcTypeCode="12" label="Username" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="Password" dbNotNull="true" dbPosition="3" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="password" javaType="java.lang.String" jdbcTypeCode="12" label="Password" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="Name" dbNotNull="true" dbPosition="4" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="Lastname" dbNotNull="true" dbPosition="5" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="lastname" javaType="java.lang.String" jdbcTypeCode="12" label="Lastname" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="Title" dbNotNull="false" dbPosition="6" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="title" javaType="java.lang.String" jdbcTypeCode="12" label="Title" maxLength="50" notNull="false" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="DepartmentId" dbNotNull="true" dbPosition="7" dbSize="10" dbTypeName="INT" inputType="number" javaName="departmentid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Departmentid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="RoleId" dbNotNull="true" dbPosition="8" dbSize="10" dbTypeName="INT" inputType="number" javaName="roleid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Roleid" notNull="true" selected="true"/>
+<fk name="FK_faculty_personel_departments">
+<fkcol colname="DepartmentId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="faculty_personel" tableref="departments" updaterule="3"/>
+</fk>
+<fk name="FK_faculty_personel_roles">
+<fkcol colname="RoleId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="faculty_personel" tableref="roles" updaterule="3"/>
+</fk>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_groups_faculty_personel" id="LINK_FK_FK_groups_faculty_personel_I" inverseSideOf="LINK_FK_FK_groups_faculty_personel_O" javaName="listOfGroups" javaType="java.util.List" joinTableName="" mappedBy="facultyPersonel" optional="UNDEFINED" owningSide="false" sourceTableName="faculty_personel" targetEntity="Groups" targetTableName="groups" used="true"/>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_faculty_personel_roles" id="LINK_FK_FK_faculty_personel_roles_O" inverseSideOf="" javaName="roles" javaType="Roles" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="faculty_personel" targetEntity="Roles" targetTableName="roles" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="RoleId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToMany" cascade="" fetch="DEFAULT" foreignKeyName="" id="LINK_JT_course_instructors_I" inverseSideOf="LINK_JT_course_instructors_O" javaName="listOfCourses" javaType="java.util.List" joinTableName="course_instructors" mappedBy="listOfFacultyPersonel" optional="UNDEFINED" owningSide="false" sourceTableName="faculty_personel" targetEntity="Courses" targetTableName="courses" used="true"/>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_faculty_personel_departments" id="LINK_FK_FK_faculty_personel_departments_O" inverseSideOf="" javaName="departments" javaType="Departments" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="faculty_personel" targetEntity="Departments" targetTableName="departments" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="DepartmentId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK__faculty_personel" id="LINK_FK_FK__faculty_personel_I" inverseSideOf="LINK_FK_FK__faculty_personel_O" javaName="listOfReservations" javaType="java.util.List" joinTableName="" mappedBy="facultyPersonel" optional="UNDEFINED" owningSide="false" sourceTableName="faculty_personel" targetEntity="Reservations" targetTableName="reservations" used="true"/>
+</table>
+<table catalog="rs_project" databaseType="TABLE" javaBean="Groups" name="groups" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="Id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="0" dbName="Type" dbNotNull="true" dbPosition="2" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="type" javaType="java.lang.String" jdbcTypeCode="12" label="Type" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="0" dbName="Name" dbNotNull="true" dbPosition="3" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="0" dbForeignKey="true" dbName="CourseId" dbNotNull="true" dbPosition="4" dbSize="10" dbTypeName="INT" inputType="number" javaName="courseid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Courseid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="0" dbForeignKey="true" dbName="InstructorId" dbNotNull="true" dbPosition="5" dbSize="10" dbTypeName="INT" inputType="number" javaName="instructorid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Instructorid" notNull="true" selected="true"/>
+<fk name="FK_groups_courses">
+<fkcol colname="CourseId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="groups" tableref="courses" updaterule="3"/>
+</fk>
+<fk name="FK_groups_faculty_personel">
+<fkcol colname="InstructorId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="groups" tableref="faculty_personel" updaterule="3"/>
+</fk>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_time_slots_groups" id="LINK_FK_FK_time_slots_groups_I" inverseSideOf="LINK_FK_FK_time_slots_groups_O" javaName="listOfTimeSlots" javaType="java.util.List" joinTableName="" mappedBy="groups" optional="UNDEFINED" owningSide="false" sourceTableName="groups" targetEntity="TimeSlots" targetTableName="time_slots" used="true"/>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_groups_courses" id="LINK_FK_FK_groups_courses_O" inverseSideOf="" javaName="courses" javaType="Courses" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="groups" targetEntity="Courses" targetTableName="courses" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="CourseId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_groups_faculty_personel" id="LINK_FK_FK_groups_faculty_personel_O" inverseSideOf="" javaName="facultyPersonel" javaType="FacultyPersonel" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="groups" targetEntity="FacultyPersonel" targetTableName="faculty_personel" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="InstructorId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToMany" cascade="" fetch="DEFAULT" foreignKeyName="" id="LINK_JT_students_groups_O" inverseSideOf="" javaName="listOfStudents" javaType="java.util.List" joinTableName="students_groups" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="groups" targetEntity="Students" targetTableName="students" used="true">
+<joinTable name="students_groups">
+<joinColumns>
+<joinColumn insertable="false" name="GroupId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+<inverseJoinColumns>
+<joinColumn insertable="false" name="StudentId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</inverseJoinColumns>
+</joinTable>
+</link>
+</table>
+<table catalog="rs_project" databaseType="TABLE" javaBean="Reservations" name="reservations" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="Id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="Type" dbNotNull="true" dbPosition="2" dbSize="100" dbTypeName="VARCHAR" inputType="text" javaName="type" javaType="java.lang.String" jdbcTypeCode="12" label="Type" maxLength="100" notEmpty="true" notNull="true" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="" dbName="BeginDateTime" dbNotNull="true" dbPosition="3" dbSize="19" dbTypeName="DATETIME" inputType="" javaName="begindatetime" javaType="java.util.Date" jdbcTypeCode="93" label="Begindatetime" notNull="true" selected="true"/>
+<column dateType="DT" dbComment="" dbDefaultValue="" dbName="EndDateTime" dbNotNull="true" dbPosition="4" dbSize="19" dbTypeName="DATETIME" inputType="" javaName="enddatetime" javaType="java.util.Date" jdbcTypeCode="93" label="Enddatetime" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="ReservedById" dbNotNull="true" dbPosition="5" dbSize="10" dbTypeName="INT" inputType="number" javaName="reservedbyid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Reservedbyid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="RoomId" dbNotNull="true" dbPosition="6" dbSize="10" dbTypeName="INT" inputType="number" javaName="roomid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Roomid" notNull="true" selected="true"/>
+<fk name="FK__faculty_personel">
+<fkcol colname="ReservedById" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="reservations" tableref="faculty_personel" updaterule="3"/>
+</fk>
+<fk name="FK__rooms">
+<fkcol colname="RoomId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="reservations" tableref="rooms" updaterule="3"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK__faculty_personel" id="LINK_FK_FK__faculty_personel_O" inverseSideOf="" javaName="facultyPersonel" javaType="FacultyPersonel" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="reservations" targetEntity="FacultyPersonel" targetTableName="faculty_personel" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="ReservedById" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK__rooms" id="LINK_FK_FK__rooms_O" inverseSideOf="" javaName="rooms" javaType="Rooms" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="reservations" targetEntity="Rooms" targetTableName="rooms" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="RoomId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="rs_project" databaseType="TABLE" javaBean="Roles" name="roles" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="Id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="0" dbName="Name" dbNotNull="true" dbPosition="2" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="Privilege" dbNotNull="true" dbPosition="3" dbSize="10" dbTypeName="INT" inputType="number" javaName="privilege" javaType="java.lang.Integer" jdbcTypeCode="4" label="Privilege" notNull="true" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_faculty_personel_roles" id="LINK_FK_FK_faculty_personel_roles_I" inverseSideOf="LINK_FK_FK_faculty_personel_roles_O" javaName="listOfFacultyPersonel" javaType="java.util.List" joinTableName="" mappedBy="roles" optional="UNDEFINED" owningSide="false" sourceTableName="roles" targetEntity="FacultyPersonel" targetTableName="faculty_personel" used="true"/>
+</table>
+<table catalog="rs_project" databaseType="TABLE" javaBean="Rooms" name="rooms" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="Id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="Name" dbNotNull="true" dbPosition="2" dbSize="10" dbTypeName="INT" inputType="number" javaName="name" javaType="java.lang.Integer" jdbcTypeCode="4" label="Name" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="Capacity" dbNotNull="true" dbPosition="3" dbSize="10" dbTypeName="INT" inputType="number" javaName="capacity" javaType="java.lang.Integer" jdbcTypeCode="4" label="Capacity" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="BuildingId" dbNotNull="true" dbPosition="4" dbSize="10" dbTypeName="INT" inputType="number" javaName="buildingid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Buildingid" notNull="true" selected="true"/>
+<fk name="FK__buildings">
+<fkcol colname="BuildingId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="rooms" tableref="buildings" updaterule="3"/>
+</fk>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_time_slots_rooms" id="LINK_FK_FK_time_slots_rooms_I" inverseSideOf="LINK_FK_FK_time_slots_rooms_O" javaName="listOfTimeSlots" javaType="java.util.List" joinTableName="" mappedBy="rooms" optional="UNDEFINED" owningSide="false" sourceTableName="rooms" targetEntity="TimeSlots" targetTableName="time_slots" used="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK__rooms" id="LINK_FK_FK__rooms_I" inverseSideOf="LINK_FK_FK__rooms_O" javaName="listOfReservations" javaType="java.util.List" joinTableName="" mappedBy="rooms" optional="UNDEFINED" owningSide="false" sourceTableName="rooms" targetEntity="Reservations" targetTableName="reservations" used="true"/>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK__buildings" id="LINK_FK_FK__buildings_O" inverseSideOf="" javaName="buildings" javaType="Buildings" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="rooms" targetEntity="Buildings" targetTableName="buildings" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="BuildingId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="rs_project" databaseType="TABLE" javaBean="Semesters" name="semesters" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="Id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="0" dbName="Name" dbNotNull="false" dbPosition="2" dbSize="20" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="20" notNull="false" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK_students_semesters" id="LINK_FK_FK_students_semesters_I" inverseSideOf="LINK_FK_FK_students_semesters_O" javaName="listOfStudents" javaType="java.util.List" joinTableName="" mappedBy="semesters" optional="UNDEFINED" owningSide="false" sourceTableName="semesters" targetEntity="Students" targetTableName="students" used="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="FK__semesters" id="LINK_FK_FK__semesters_I" inverseSideOf="LINK_FK_FK__semesters_O" javaName="listOfCourses" javaType="java.util.List" joinTableName="" mappedBy="semesters" optional="UNDEFINED" owningSide="false" sourceTableName="semesters" targetEntity="Courses" targetTableName="courses" used="true"/>
+</table>
+<table catalog="rs_project" databaseType="TABLE" javaBean="Students" name="students" schema="">
+<column dbAutoIncremented="true" dbComment="" dbDefaultValue="" dbName="Id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="0" dbName="Name" dbNotNull="true" dbPosition="2" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="0" dbName="Lastname" dbNotNull="true" dbPosition="3" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="lastname" javaType="java.lang.String" jdbcTypeCode="12" label="Lastname" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="0" dbName="StudentId" dbNotNull="true" dbPosition="4" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="studentid" javaType="java.lang.String" jdbcTypeCode="12" label="Studentid" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="0" dbForeignKey="true" dbName="DepartmentId" dbNotNull="true" dbPosition="5" dbSize="10" dbTypeName="INT" inputType="number" javaName="departmentid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Departmentid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="0" dbForeignKey="true" dbName="SemesterId" dbNotNull="true" dbPosition="6" dbSize="10" dbTypeName="INT" inputType="number" javaName="semesterid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Semesterid" notNull="true" selected="true"/>
+<fk name="FK_students_departments">
+<fkcol colname="DepartmentId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="students" tableref="departments" updaterule="3"/>
+</fk>
+<fk name="FK_students_semesters">
+<fkcol colname="SemesterId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="students" tableref="semesters" updaterule="3"/>
+</fk>
+<link cardinality="ManyToMany" cascade="" fetch="DEFAULT" foreignKeyName="" id="LINK_JT_students_groups_I" inverseSideOf="LINK_JT_students_groups_O" javaName="listOfGroups" javaType="java.util.List" joinTableName="students_groups" mappedBy="listOfStudents" optional="UNDEFINED" owningSide="false" sourceTableName="students" targetEntity="Groups" targetTableName="groups" used="true"/>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_students_semesters" id="LINK_FK_FK_students_semesters_O" inverseSideOf="" javaName="semesters" javaType="Semesters" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="students" targetEntity="Semesters" targetTableName="semesters" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="SemesterId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_students_departments" id="LINK_FK_FK_students_departments_O" inverseSideOf="" javaName="departments" javaType="Departments" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="students" targetEntity="Departments" targetTableName="departments" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="DepartmentId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="rs_project" databaseType="TABLE" javaBean="StudentsGroups" name="students_groups" schema="">
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="StudentId" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="studentid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Studentid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="GroupId" dbNotNull="true" dbPosition="2" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="groupid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Groupid" notNull="true" selected="true"/>
+<fk name="FK_students_groups_groups">
+<fkcol colname="GroupId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="students_groups" tableref="groups" updaterule="3"/>
+</fk>
+<fk name="FK_students_groups_students">
+<fkcol colname="StudentId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="students_groups" tableref="students" updaterule="3"/>
+</fk>
+</table>
+<table catalog="rs_project" databaseType="TABLE" javaBean="TimeSlots" name="time_slots" schema="">
+<column dbComment="" dbDefaultValue="" dbName="Id" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INT" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="9-19h" dbDefaultValue="" dbName="StartTime" dbNotNull="true" dbPosition="2" dbSize="12" dbTypeName="FLOAT" inputType="number" javaName="starttime" javaType="java.lang.Float" jdbcTypeCode="7" label="Starttime" notNull="true" selected="true"/>
+<column dbComment="in hours" dbDefaultValue="" dbName="Length" dbNotNull="true" dbPosition="3" dbSize="12" dbTypeName="FLOAT" inputType="number" javaName="length" javaType="java.lang.Float" jdbcTypeCode="7" label="Length" notNull="true" selected="true"/>
+<column dbComment="1-5" dbDefaultValue="" dbName="Day" dbNotNull="true" dbPosition="4" dbSize="3" dbTypeName="TINYINT" inputType="number" javaName="day" javaType="java.lang.Byte" jdbcTypeCode="-6" label="Day" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="RoomId" dbNotNull="true" dbPosition="5" dbSize="10" dbTypeName="INT" inputType="number" javaName="roomid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Roomid" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbForeignKey="true" dbName="GroupId" dbNotNull="true" dbPosition="6" dbSize="10" dbTypeName="INT" inputType="number" javaName="groupid" javaType="java.lang.Integer" jdbcTypeCode="4" label="Groupid" notNull="true" selected="true"/>
+<fk name="FK_time_slots_groups">
+<fkcol colname="GroupId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="time_slots" tableref="groups" updaterule="3"/>
+</fk>
+<fk name="FK_time_slots_rooms">
+<fkcol colname="RoomId" colref="Id" deferrable="7" deleterule="3" sequence="1" tablename="time_slots" tableref="rooms" updaterule="3"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_time_slots_groups" id="LINK_FK_FK_time_slots_groups_O" inverseSideOf="" javaName="groups" javaType="Groups" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="time_slots" targetEntity="Groups" targetTableName="groups" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="GroupId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="FK_time_slots_rooms" id="LINK_FK_FK_time_slots_rooms_O" inverseSideOf="" javaName="rooms" javaType="Rooms" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="time_slots" targetEntity="Rooms" targetTableName="rooms" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="RoomId" nullable="true" referencedColumnName="Id" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+</tableList>
+</root>

@@ -1,0 +1,323 @@
+
+GENERATOR VARIABLES :
+=====================
+
+* GENERATOR 
+$generator.name    = Telosys Tools Generator
+$generator.version = 2.1.1 
+
+* CURRENT DATE AND TIME 
+$today.date = 14 Jul 2015
+$today.time = 20:55:45
+$today.date("dd/MM/yyyy") = 14/07/2015
+$today.time("HH:mm")      = 20:55
+
+
+GENERATOR CONSTANTS FOR SPECIAL CHARACTERS :
+============================================
+$DOLLAR = $
+$SHARP  = #
+$AMP    = &
+$QUOT   = "
+$LT     = <
+$GT     = >
+$LBRACE = {
+$RBRACE = }
+
+GENERATOR CONSTANTS USABLE AS METHODS PARAMETERS :
+==================================================
+$const.KEY          =  1
+$const.NOT_KEY      =  2
+
+$const.TEXT         =  4
+$const.NOT_TEXT     =  8
+
+$const.IN_LINKS     =  16
+$const.NOT_IN_LINKS =  32
+
+$const.IN_SELECTED_LINKS      = 64
+$const.NOT_IN_SELECTED_LINKS  = 128
+
+$const.getKEY()     = 1
+$const.getNOT_KEY() = 2 
+
+
+PROJECT VARIABLES :
+===================
+
+Project packages ( predefined variables ) :
+$ROOT_PKG   = "org.demo"
+$ENTITY_PKG = "org.demo.bean"
+
+Project folders ( predefined variables ) :
+$SRC      = "src/main/java"
+$RES      = "src/main/resources"
+$WEB      = "src/main/webapp"
+$TEST_SRC = "src/test/java"
+$TEST_RES = "src/test/resources"
+$DOC      = "doc"
+$TMP      = "tmp"
+
+Project variables ( $project.variables ) including predefined variables :
+ . $WEB = src/main/webapp
+ . $ENTITY_PKG = org.demo.bean
+ . $MAVEN_ARTIFACT_ID = RS_Project
+ . $TEST_SRC = src/test/java
+ . $RES = src/main/resources
+ . $PROJECT_NAME = RS_Project
+ . $DBID = 1
+ . $DOC = doc
+ . $MAVEN_GROUP_ID = group.to.be.defined
+ . $ROOT_PKG = org.demo
+ . $SRC = src/main/java
+ . $MYVAR = foo
+ . $TEST_RES = src/test/resources
+ . $PROJECT_VERSION = 0.1
+ . $V2 = 22
+ . $TMP = tmp
+
+
+ENTITY VARIABLES :
+==================
+
+* BEAN CLASS
+$entity.name            = Courses
+$fn.uncapitalize($entity.name) = courses
+$entity.package         = org.demo.bean
+$entity.databaseTable   = courses
+$entity.databaseCatalog = rs_project
+$entity.databaseSchema  = 
+
+* BEAN CLASS ATTRIBUTES ( $entity.attributes )
+$entity.attributes.size() = 8 
+$attributes.size() = 8 
+
+* BEAN CLASS JPA ANNOTATIONS ( $jpa.entityAnnotations(2) )
+  @Entity
+  @Table(name="courses", catalog="rs_project" )
+
+* BEAN CLASS AUTOINCREMTED PRIMARY KEY ?
+ $entity.autoincrementedKeyAttribute.databaseName = Id
+
+KEY ATTRIBUTES : 
+ . id : type = Integer , auto-incremented = true
+
+ ------------------------------
+ Field : id
+ ------------------------------
+ Java :
+  $field.name      = id
+  $field.type      = Integer
+  $field.getter    = getId
+  $field.setter    = setId
+  $field.label     = Id
+  $field.inputType = number
+ Java bean validation annotations :
+  @NotNull
+ JPA annotations :
+  @Id
+  @GeneratedValue(strategy=GenerationType.AUTO)
+  @Column(name="Id", nullable=false)
+
+ Database :
+  $field.isKeyElement() = true
+  $field.isAutoIncremented() = true
+  $field.isUsedInForeignKey() = false
+  $field.databaseName = Id
+  $field.databaseType = INT
+  $field.jdbcTypeCode = 4
+  $field.databaseSize = 10
+  $field.isDatabaseNotNull = true
+  $field.hasDatabaseDefaultValue() = false
+  $field.databaseDefaultValue = 
+
+ ------------------------------
+ Field : name
+ ------------------------------
+ Java :
+  $field.name      = name
+  $field.type      = String
+  $field.getter    = getName
+  $field.setter    = setName
+  $field.label     = Name
+  $field.inputType = text
+ Java bean validation annotations :
+  @NotNull
+  @Size( min = 1, max = 50 )
+ JPA annotations :
+  @Column(name="Name", nullable=false, length=50)
+
+ Database :
+  $field.isKeyElement() = false
+  $field.isAutoIncremented() = false
+  $field.isUsedInForeignKey() = false
+  $field.databaseName = Name
+  $field.databaseType = VARCHAR
+  $field.jdbcTypeCode = 12
+  $field.databaseSize = 50
+  $field.isDatabaseNotNull = true
+  $field.hasDatabaseDefaultValue() = true
+  $field.databaseDefaultValue = 0
+
+ ------------------------------
+ Field : required
+ ------------------------------
+ Java :
+  $field.name      = required
+  $field.type      = Byte
+  $field.getter    = getRequired
+  $field.setter    = setRequired
+  $field.label     = Required
+  $field.inputType = number
+ Java bean validation annotations :
+  @NotNull
+ JPA annotations :
+  @Column(name="Required", nullable=false)
+
+ Database :
+  $field.isKeyElement() = false
+  $field.isAutoIncremented() = false
+  $field.isUsedInForeignKey() = false
+  $field.databaseName = Required
+  $field.databaseType = TINYINT
+  $field.jdbcTypeCode = -6
+  $field.databaseSize = 3
+  $field.isDatabaseNotNull = true
+  $field.hasDatabaseDefaultValue() = true
+  $field.databaseDefaultValue = 1
+
+ ------------------------------
+ Field : nolectures
+ ------------------------------
+ Java :
+  $field.name      = nolectures
+  $field.type      = Byte
+  $field.getter    = getNolectures
+  $field.setter    = setNolectures
+  $field.label     = Nolectures
+  $field.inputType = number
+ Java bean validation annotations :
+
+ JPA annotations :
+  @Column(name="NoLectures")
+
+ Database :
+  $field.isKeyElement() = false
+  $field.isAutoIncremented() = false
+  $field.isUsedInForeignKey() = false
+  $field.databaseName = NoLectures
+  $field.databaseType = TINYINT
+  $field.jdbcTypeCode = -6
+  $field.databaseSize = 3
+  $field.isDatabaseNotNull = false
+  $field.hasDatabaseDefaultValue() = false
+  $field.databaseDefaultValue = 
+
+ ------------------------------
+ Field : noaudit
+ ------------------------------
+ Java :
+  $field.name      = noaudit
+  $field.type      = Byte
+  $field.getter    = getNoaudit
+  $field.setter    = setNoaudit
+  $field.label     = Noaudit
+  $field.inputType = number
+ Java bean validation annotations :
+
+ JPA annotations :
+  @Column(name="NoAudit")
+
+ Database :
+  $field.isKeyElement() = false
+  $field.isAutoIncremented() = false
+  $field.isUsedInForeignKey() = false
+  $field.databaseName = NoAudit
+  $field.databaseType = TINYINT
+  $field.jdbcTypeCode = -6
+  $field.databaseSize = 3
+  $field.isDatabaseNotNull = false
+  $field.hasDatabaseDefaultValue() = false
+  $field.databaseDefaultValue = 
+
+ ------------------------------
+ Field : nolab
+ ------------------------------
+ Java :
+  $field.name      = nolab
+  $field.type      = Byte
+  $field.getter    = getNolab
+  $field.setter    = setNolab
+  $field.label     = Nolab
+  $field.inputType = number
+ Java bean validation annotations :
+
+ JPA annotations :
+  @Column(name="NoLab")
+
+ Database :
+  $field.isKeyElement() = false
+  $field.isAutoIncremented() = false
+  $field.isUsedInForeignKey() = false
+  $field.databaseName = NoLab
+  $field.databaseType = TINYINT
+  $field.jdbcTypeCode = -6
+  $field.databaseSize = 3
+  $field.isDatabaseNotNull = false
+  $field.hasDatabaseDefaultValue() = false
+  $field.databaseDefaultValue = 
+
+ ------------------------------
+ Field : semesterid
+ ------------------------------
+ Java :
+  $field.name      = semesterid
+  $field.type      = Integer
+  $field.getter    = getSemesterid
+  $field.setter    = setSemesterid
+  $field.label     = Semesterid
+  $field.inputType = number
+ Java bean validation annotations :
+  @NotNull
+ JPA annotations :
+  @Column(name="SemesterId", nullable=false)
+
+ Database :
+  $field.isKeyElement() = false
+  $field.isAutoIncremented() = false
+  $field.isUsedInForeignKey() = true
+  $field.databaseName = SemesterId
+  $field.databaseType = INT
+  $field.jdbcTypeCode = 4
+  $field.databaseSize = 10
+  $field.isDatabaseNotNull = true
+  $field.hasDatabaseDefaultValue() = false
+  $field.databaseDefaultValue = 
+
+ ------------------------------
+ Field : departmentid
+ ------------------------------
+ Java :
+  $field.name      = departmentid
+  $field.type      = Integer
+  $field.getter    = getDepartmentid
+  $field.setter    = setDepartmentid
+  $field.label     = Departmentid
+  $field.inputType = number
+ Java bean validation annotations :
+  @NotNull
+ JPA annotations :
+  @Column(name="DepartmentId", nullable=false)
+
+ Database :
+  $field.isKeyElement() = false
+  $field.isAutoIncremented() = false
+  $field.isUsedInForeignKey() = true
+  $field.databaseName = DepartmentId
+  $field.databaseType = INT
+  $field.jdbcTypeCode = 4
+  $field.databaseSize = 10
+  $field.isDatabaseNotNull = true
+  $field.hasDatabaseDefaultValue() = false
+  $field.databaseDefaultValue = 
+

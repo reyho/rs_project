@@ -1,0 +1,161 @@
+
+GENERATOR VARIABLES :
+=====================
+
+* GENERATOR 
+$generator.name    = Telosys Tools Generator
+$generator.version = 2.1.1 
+
+* CURRENT DATE AND TIME 
+$today.date = 14 Jul 2015
+$today.time = 20:55:48
+$today.date("dd/MM/yyyy") = 14/07/2015
+$today.time("HH:mm")      = 20:55
+
+
+GENERATOR CONSTANTS FOR SPECIAL CHARACTERS :
+============================================
+$DOLLAR = $
+$SHARP  = #
+$AMP    = &
+$QUOT   = "
+$LT     = <
+$GT     = >
+$LBRACE = {
+$RBRACE = }
+
+GENERATOR CONSTANTS USABLE AS METHODS PARAMETERS :
+==================================================
+$const.KEY          =  1
+$const.NOT_KEY      =  2
+
+$const.TEXT         =  4
+$const.NOT_TEXT     =  8
+
+$const.IN_LINKS     =  16
+$const.NOT_IN_LINKS =  32
+
+$const.IN_SELECTED_LINKS      = 64
+$const.NOT_IN_SELECTED_LINKS  = 128
+
+$const.getKEY()     = 1
+$const.getNOT_KEY() = 2 
+
+
+PROJECT VARIABLES :
+===================
+
+Project packages ( predefined variables ) :
+$ROOT_PKG   = "org.demo"
+$ENTITY_PKG = "org.demo.bean"
+
+Project folders ( predefined variables ) :
+$SRC      = "src/main/java"
+$RES      = "src/main/resources"
+$WEB      = "src/main/webapp"
+$TEST_SRC = "src/test/java"
+$TEST_RES = "src/test/resources"
+$DOC      = "doc"
+$TMP      = "tmp"
+
+Project variables ( $project.variables ) including predefined variables :
+ . $WEB = src/main/webapp
+ . $ENTITY_PKG = org.demo.bean
+ . $MAVEN_ARTIFACT_ID = RS_Project
+ . $TEST_SRC = src/test/java
+ . $RES = src/main/resources
+ . $PROJECT_NAME = RS_Project
+ . $DBID = 1
+ . $DOC = doc
+ . $MAVEN_GROUP_ID = group.to.be.defined
+ . $ROOT_PKG = org.demo
+ . $SRC = src/main/java
+ . $MYVAR = foo
+ . $TEST_RES = src/test/resources
+ . $PROJECT_VERSION = 0.1
+ . $V2 = 22
+ . $TMP = tmp
+
+
+ENTITY VARIABLES :
+==================
+
+* BEAN CLASS
+$entity.name            = StudentsGroups
+$fn.uncapitalize($entity.name) = studentsGroups
+$entity.package         = org.demo.bean
+$entity.databaseTable   = students_groups
+$entity.databaseCatalog = rs_project
+$entity.databaseSchema  = 
+
+* BEAN CLASS ATTRIBUTES ( $entity.attributes )
+$entity.attributes.size() = 2 
+$attributes.size() = 2 
+
+* BEAN CLASS JPA ANNOTATIONS ( $jpa.entityAnnotations(2) )
+  @Entity
+  @Table(name="students_groups", catalog="rs_project" )
+
+* BEAN CLASS AUTOINCREMTED PRIMARY KEY ?
+ No autoincremented primary key
+
+KEY ATTRIBUTES : 
+ . studentid : type = Integer , auto-incremented = false
+ . groupid : type = Integer , auto-incremented = false
+
+ ------------------------------
+ Field : studentid
+ ------------------------------
+ Java :
+  $field.name      = studentid
+  $field.type      = Integer
+  $field.getter    = getStudentid
+  $field.setter    = setStudentid
+  $field.label     = Studentid
+  $field.inputType = number
+ Java bean validation annotations :
+  @NotNull
+ JPA annotations :
+  @Id
+  @Column(name="StudentId", nullable=false)
+
+ Database :
+  $field.isKeyElement() = true
+  $field.isAutoIncremented() = false
+  $field.isUsedInForeignKey() = true
+  $field.databaseName = StudentId
+  $field.databaseType = INT
+  $field.jdbcTypeCode = 4
+  $field.databaseSize = 10
+  $field.isDatabaseNotNull = true
+  $field.hasDatabaseDefaultValue() = false
+  $field.databaseDefaultValue = 
+
+ ------------------------------
+ Field : groupid
+ ------------------------------
+ Java :
+  $field.name      = groupid
+  $field.type      = Integer
+  $field.getter    = getGroupid
+  $field.setter    = setGroupid
+  $field.label     = Groupid
+  $field.inputType = number
+ Java bean validation annotations :
+  @NotNull
+ JPA annotations :
+  @Id
+  @Column(name="GroupId", nullable=false)
+
+ Database :
+  $field.isKeyElement() = true
+  $field.isAutoIncremented() = false
+  $field.isUsedInForeignKey() = true
+  $field.databaseName = GroupId
+  $field.databaseType = INT
+  $field.jdbcTypeCode = 4
+  $field.databaseSize = 10
+  $field.isDatabaseNotNull = true
+  $field.hasDatabaseDefaultValue() = false
+  $field.databaseDefaultValue = 
+
