@@ -33,7 +33,7 @@ public class Room implements Serializable
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer    id           ; // Primary Key
 
-    private Integer    name         ;
+    private String	   name         ;
     private Integer    capacity     ;
     //private Integer    buildingid   ;
 
@@ -77,18 +77,18 @@ public class Room implements Serializable
     /**
      * Set the "name" field value
      * This field is mapped on the database column "Name" ( type "INT", NotNull : true ) 
-     * @param name
+     * @param n
      */
-    public void setName( Integer name )
+    public void setName( String n )
     {
-        this.name = name;
+        this.name = n;
     }
     /**
      * Get the "name" field value
      * This field is mapped on the database column "Name" ( type "INT", NotNull : true ) 
      * @return the field value
      */
-    public Integer getName()
+    public String getName()
     {
         return this.name;
     }
