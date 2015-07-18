@@ -3,6 +3,7 @@ package controllers;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
@@ -17,10 +18,10 @@ public class FacultyPersonnelController {
     private EntityTransaction tx = em.getTransaction();
     
     public static void main(String[] args) {
-    	FacultyPersonnelController fc = new FacultyPersonnelController();
-    	FacultyPersonnel fm = fc.createFacultyMember("TT_prof", "123456", "TT_Prof_name", "TT_Prof_Lastname", "red.prof.", 2, 2);
-    	//FacultyPersonnel fm = fc.findFacultyMemberByName("TT_Prof_Name");
-    	System.out.println(fm);
+    	//FacultyPersonnelController fc = new FacultyPersonnelController();
+    	//FacultyPersonnel fm = fc.createFacultyMember("TT_prof", "123456", "TT_Prof_name", "TT_Prof_Lastname", "red.prof.", 2, 2);
+    	//FacultyPersonnel fm = fc.findFacultyMemberByUsername("dean");
+    	//System.out.println(fm);
     	//fc.deleteFacultyMember(2);
 		 
 	}
@@ -49,12 +50,18 @@ public class FacultyPersonnelController {
     }
     
     
-    public FacultyPersonnel findFacultyMemberByName(String bName) {
+    public FacultyPersonnel findFacultyMemberByUsername(String uName) {
     	TypedQuery<FacultyPersonnel> query =
-      		  em.createQuery("SELECT e FROM faculty_personnel e WHERE e.Name = :Name", FacultyPersonnel.class);
-    	query.setParameter("name", bName); 
-    	FacultyPersonnel b = query.getSingleResult();
-    	return b;
+      		  em.createQuery("SELECT e FROM FacultyPersonnel e WHERE e.username = :name", FacultyPersonnel.class);
+    	query.setParameter("name", uName); 
+    	try {
+    		FacultyPersonnel fp = query.getSingleResult();
+    		return fp;
+    	}
+    	catch (NoResultException nr) {
+    		return null;
+    	}
+    	
     }
     
     
