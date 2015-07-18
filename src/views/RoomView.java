@@ -19,7 +19,7 @@ public class RoomView extends VBox{
 	
 	TableView<Room> table;
 	TextField nameInput, capacityInput;
-	ComboBox<Building> buildingIdInput;
+	ComboBox<Building> buildingInput;
 	RoomController rc = new RoomController();
 	
 	
@@ -45,12 +45,12 @@ public class RoomView extends VBox{
 		capacityInput.setPromptText("Capacity");
 		capacityInput.setMinWidth(100);
 		
-		buildingIdInput = new ComboBox<>();
+		buildingInput = new ComboBox<>();
 		//buildingIdInput.setPromptText("BuildingId");
-		buildingIdInput.setMinWidth(100);
+		buildingInput.setMinWidth(100);
 		
 		for(Building building : rc.getAllBuildings()) {
-			buildingIdInput.getItems().add(building);
+			buildingInput.getItems().add(building);
 		}
 		
 				
@@ -62,7 +62,7 @@ public class RoomView extends VBox{
 		HBox hBox = new HBox();
 		hBox.setPadding(new Insets(10, 10, 10, 10));
 		hBox.setSpacing(10);
-		hBox.getChildren().addAll(nameInput, capacityInput, buildingIdInput, addButton, deleteButton);
+		hBox.getChildren().addAll(nameInput, capacityInput, buildingInput, addButton, deleteButton);
 
 		
 		table = new TableView<>(getRoom());
@@ -81,7 +81,9 @@ public class RoomView extends VBox{
 
 
 	private void addButtonClicked() {
-		Room room = rc.createRoom(nameInput.getText(), Integer.parseInt(capacityInput.getText()), rc.getAllBuildings().get(0));
+		Room room = rc.createRoom(nameInput.getText(),
+				Integer.parseInt(capacityInput.getText()),
+				buildingInput.getValue());
 		table.getItems().add(room);
 		nameInput.clear();
 	}
