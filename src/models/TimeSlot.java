@@ -12,6 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -28,7 +31,7 @@ public class TimeSlot implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer    id           ; // Primary Key
 
     private Float      starttime    ;
@@ -37,6 +40,14 @@ public class TimeSlot implements Serializable
     private Integer    roomid       ;
     private Integer    groupid      ;
 
+    @ManyToOne
+    @JoinColumn(name="RoomId")
+    private Room room;
+    
+    @OneToOne
+    @JoinColumn(name="GroupId")
+    private Group group;
+    
     /**
      * Default constructor
      */
@@ -188,7 +199,23 @@ public class TimeSlot implements Serializable
         sb.append("|");
         sb.append(groupid);
         return sb.toString(); 
-    } 
+    }
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	} 
 
 
 }

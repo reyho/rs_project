@@ -7,11 +7,17 @@
 package models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -28,7 +34,7 @@ public class FacultyPersonel implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer    id           ; // Primary Key
 
     private String     username     ;
@@ -39,6 +45,28 @@ public class FacultyPersonel implements Serializable
     private Integer    departmentid ;
     private Integer    roleid       ;
 
+    @ManyToOne
+    @JoinColumn(name="RoleId")
+    private Role role;
+    
+    @OneToMany(mappedBy="instructor")
+    private List<Group> groups;
+    
+    @OneToMany(mappedBy="reservedBy")
+    private List<Reservation> reservations;
+    
+    @ManyToMany
+    @JoinTable(name="course_instructors",
+    		joinColumns= @JoinColumn(name="InstructorId"),
+    		inverseJoinColumns = @JoinColumn(name="CourseId")
+    )
+    private List<Course> courses;
+    
+    @ManyToOne
+    @JoinColumn(name="DepartmentId")
+    private Department departmnet;
+    
+    
     /**
      * Default constructor
      */
@@ -234,7 +262,47 @@ public class FacultyPersonel implements Serializable
         sb.append("|");
         sb.append(roleid);
         return sb.toString(); 
-    } 
+    }
+
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public List<Group> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(List<Group> groups) {
+		this.groups = groups;
+	}
+
+	public Department getDepartmnet() {
+		return departmnet;
+	}
+
+	public void setDepartmnet(Department departmnet) {
+		this.departmnet = departmnet;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	} 
 
 
 }

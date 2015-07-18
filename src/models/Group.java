@@ -7,11 +7,17 @@
 package models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -28,7 +34,7 @@ public class Group implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer    id           ; // Primary Key
 
     private String     type         ;
@@ -36,6 +42,24 @@ public class Group implements Serializable
     private Integer    courseid     ;
     private Integer    instructorid ;
 
+    @ManyToOne
+    @JoinColumn(name="InstructorId")
+    private FacultyPersonel instructor;
+    
+    @ManyToOne
+    @JoinColumn(name="CourseId")
+    private Course course;
+    
+    @ManyToMany
+    @JoinTable(name="students_groups",
+    		joinColumns= @JoinColumn(name="GroupId"),
+    		inverseJoinColumns = @JoinColumn(name="StudentId")
+    )
+    private List<Student> students;
+    
+    @OneToOne(mappedBy="group")
+    private TimeSlot timeSlot;
+    
     /**
      * Default constructor
      */
@@ -148,6 +172,16 @@ public class Group implements Serializable
     {
         return this.instructorid;
     }
+    
+    public List<Student> getStudents()
+    {
+        return this.students;
+    }
+    
+    public void setStudents(List<Student> s)
+    {
+        this.students = s;
+    }
 
 
     //----------------------------------------------------------------------
@@ -165,7 +199,23 @@ public class Group implements Serializable
         sb.append("|");
         sb.append(instructorid);
         return sb.toString(); 
-    } 
+    }
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public TimeSlot getTimeSlot() {
+		return timeSlot;
+	}
+
+	public void setTimeSlot(TimeSlot timeSlot) {
+		this.timeSlot = timeSlot;
+	} 
 
 
 }

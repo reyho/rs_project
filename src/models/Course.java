@@ -7,11 +7,17 @@
 package models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -28,7 +34,7 @@ public class Course implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer    id           ; // Primary Key
 
     private String     name         ;
@@ -38,7 +44,25 @@ public class Course implements Serializable
     private Byte       nolab        ;
     private Integer    semesterid   ;
     private Integer    departmentid ;
-
+    
+    @ManyToOne
+    @JoinColumn(name="SemesterId")
+    private Semester semester;
+    
+    @ManyToOne
+    @JoinColumn(name="DepartmentId")
+    private Department departmnet;
+    
+    @ManyToMany
+    @JoinTable(name="course_instructors",
+    		joinColumns= @JoinColumn(name="CourseId"),
+    		inverseJoinColumns = @JoinColumn(name="InstructorId")
+    )
+    private List<FacultyPersonel> instructors;
+    
+    @OneToMany(mappedBy="course")
+    private List<Group> groups;
+    
     /**
      * Default constructor
      */
@@ -234,7 +258,39 @@ public class Course implements Serializable
         sb.append("|");
         sb.append(departmentid);
         return sb.toString(); 
-    } 
+    }
+
+	public Semester getSemester() {
+		return semester;
+	}
+
+	public void setSemester(Semester semester) {
+		this.semester = semester;
+	}
+
+	public List<FacultyPersonel> getInstructors() {
+		return instructors;
+	}
+
+	public void setInstructors(List<FacultyPersonel> instructors) {
+		this.instructors = instructors;
+	}
+
+	public Department getDepartmnet() {
+		return departmnet;
+	}
+
+	public void setDepartmnet(Department departmnet) {
+		this.departmnet = departmnet;
+	}
+
+	public List<Group> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(List<Group> groups) {
+		this.groups = groups;
+	} 
 
 
 }

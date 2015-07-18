@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -28,13 +30,16 @@ public class Room implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer    id           ; // Primary Key
 
     private Integer    name         ;
     private Integer    capacity     ;
     private Integer    buildingid   ;
 
+    @ManyToOne
+    @JoinColumn(name="BuildingId")
+    private Building building;
     /**
      * Default constructor
      */
@@ -142,7 +147,15 @@ public class Room implements Serializable
         sb.append("|");
         sb.append(buildingid);
         return sb.toString(); 
-    } 
+    }
+
+	public Building getBuilding() {
+		return building;
+	}
+
+	public void setBuilding(Building building) {
+		this.building = building;
+	} 
 
 
 }

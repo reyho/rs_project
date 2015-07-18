@@ -7,11 +7,16 @@
 package models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -28,7 +33,7 @@ public class Student implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer    id           ; // Primary Key
 
     private String     name         ;
@@ -37,6 +42,22 @@ public class Student implements Serializable
     private Integer    departmentid ;
     private Integer    semesterid   ;
 
+    @ManyToOne
+    @JoinColumn(name="SemesterId")
+    private Semester semester;
+    
+    @ManyToOne
+    @JoinColumn(name="DepartmentId")
+    private Department department;
+    
+    @ManyToMany
+    @JoinTable(name="students_groups",
+    		joinColumns= @JoinColumn(name="StudentId"),
+    		inverseJoinColumns = @JoinColumn(name="GroupId")
+    )
+    
+    
+    private List<Group> groups;
     /**
      * Default constructor
      */
@@ -170,6 +191,10 @@ public class Student implements Serializable
         return this.semesterid;
     }
 
+    public List<Group> getGroups()
+    {
+        return this.groups;
+    }
 
     //----------------------------------------------------------------------
     // toString METHOD
@@ -188,7 +213,23 @@ public class Student implements Serializable
         sb.append("|");
         sb.append(semesterid);
         return sb.toString(); 
-    } 
+    }
+
+	public Semester getSemester() {
+		return semester;
+	}
+
+	public void setSemester(Semester semester) {
+		this.semester = semester;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	} 
 
 
 }

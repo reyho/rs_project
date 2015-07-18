@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,7 +33,7 @@ public class Reservation implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer    id           ; // Primary Key
 
     private String     type         ;
@@ -42,6 +44,10 @@ public class Reservation implements Serializable
     private Integer    reservedbyid ;
     private Integer    roomid       ;
 
+    @ManyToOne
+    @JoinColumn(name="ReservedbyId")
+    private FacultyPersonel reservedBy;
+    
     /**
      * Default constructor
      */
@@ -193,7 +199,15 @@ public class Reservation implements Serializable
         sb.append("|");
         sb.append(roomid);
         return sb.toString(); 
-    } 
+    }
+
+	public FacultyPersonel getReservedBy() {
+		return reservedBy;
+	}
+
+	public void setReservedBy(FacultyPersonel reservedBy) {
+		this.reservedBy = reservedBy;
+	}
 
 
 }
