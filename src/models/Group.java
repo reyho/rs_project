@@ -39,12 +39,12 @@ public class Group implements Serializable
 
     private String     type         ;
     private String     name         ;
-    private Integer    courseid     ;
-    private Integer    instructorid ;
+    //private Integer    courseid     ;
+    //private Integer    instructorid ;
 
     @ManyToOne
     @JoinColumn(name="InstructorId")
-    private FacultyPersonel instructor;
+    private FacultyPersonnel instructor;
     
     @ManyToOne
     @JoinColumn(name="CourseId")
@@ -138,7 +138,7 @@ public class Group implements Serializable
      * Set the "courseid" field value
      * This field is mapped on the database column "CourseId" ( type "INT", NotNull : true ) 
      * @param courseid
-     */
+     
     public void setCourseid( Integer courseid )
     {
         this.courseid = courseid;
@@ -147,7 +147,7 @@ public class Group implements Serializable
      * Get the "courseid" field value
      * This field is mapped on the database column "CourseId" ( type "INT", NotNull : true ) 
      * @return the field value
-     */
+     
     public Integer getCourseid()
     {
         return this.courseid;
@@ -158,7 +158,7 @@ public class Group implements Serializable
      * Set the "instructorid" field value
      * This field is mapped on the database column "InstructorId" ( type "INT", NotNull : true ) 
      * @param instructorid
-     */
+     
     public void setInstructorid( Integer instructorid )
     {
         this.instructorid = instructorid;
@@ -167,12 +167,12 @@ public class Group implements Serializable
      * Get the "instructorid" field value
      * This field is mapped on the database column "InstructorId" ( type "INT", NotNull : true ) 
      * @return the field value
-     */
+     
     public Integer getInstructorid()
     {
         return this.instructorid;
     }
-    
+    */
     public List<Student> getStudents()
     {
         return this.students;
@@ -195,9 +195,9 @@ public class Group implements Serializable
         sb.append("|");
         sb.append(name);
         sb.append("|");
-        sb.append(courseid);
+        sb.append(course.getName());
         sb.append("|");
-        sb.append(instructorid);
+        sb.append(instructor);
         return sb.toString(); 
     }
 

@@ -27,12 +27,12 @@ public class BuildingsController {
     	tx.begin( );
         em.persist( b );
         tx.commit();
-		return null;
+		return b;
     }
     
     public Building findBuildingByName(String bName) {
     	TypedQuery<Building> query =
-      		  em.createQuery("SELECT e FROM buildings e WHERE e.ename = :name", Building.class);
+      		  em.createQuery("SELECT e FROM buildings e WHERE e.Name = :name", Building.class);
     	query.setParameter("name", bName); 
     	Building b = query.getSingleResult();
     	return b;

@@ -42,8 +42,8 @@ public class Course implements Serializable
     private Byte       nolectures   ;
     private Byte       noaudit      ;
     private Byte       nolab        ;
-    private Integer    semesterid   ;
-    private Integer    departmentid ;
+    //private Integer    semesterid   ;
+    //private Integer    departmentid ;
     
     @ManyToOne
     @JoinColumn(name="SemesterId")
@@ -58,7 +58,7 @@ public class Course implements Serializable
     		joinColumns= @JoinColumn(name="CourseId"),
     		inverseJoinColumns = @JoinColumn(name="InstructorId")
     )
-    private List<FacultyPersonel> instructors;
+    private List<FacultyPersonnel> instructors;
     
     @OneToMany(mappedBy="course")
     private List<Group> groups;
@@ -201,7 +201,7 @@ public class Course implements Serializable
      * Set the "semesterid" field value
      * This field is mapped on the database column "SemesterId" ( type "INT", NotNull : true ) 
      * @param semesterid
-     */
+     
     public void setSemesterid( Integer semesterid )
     {
         this.semesterid = semesterid;
@@ -210,7 +210,7 @@ public class Course implements Serializable
      * Get the "semesterid" field value
      * This field is mapped on the database column "SemesterId" ( type "INT", NotNull : true ) 
      * @return the field value
-     */
+     
     public Integer getSemesterid()
     {
         return this.semesterid;
@@ -221,7 +221,7 @@ public class Course implements Serializable
      * Set the "departmentid" field value
      * This field is mapped on the database column "DepartmentId" ( type "INT", NotNull : true ) 
      * @param departmentid
-     */
+     
     public void setDepartmentid( Integer departmentid )
     {
         this.departmentid = departmentid;
@@ -230,12 +230,12 @@ public class Course implements Serializable
      * Get the "departmentid" field value
      * This field is mapped on the database column "DepartmentId" ( type "INT", NotNull : true ) 
      * @return the field value
-     */
+     
     public Integer getDepartmentid()
     {
         return this.departmentid;
     }
-
+    */
 
     //----------------------------------------------------------------------
     // toString METHOD
@@ -254,9 +254,9 @@ public class Course implements Serializable
         sb.append("|");
         sb.append(nolab);
         sb.append("|");
-        sb.append(semesterid);
+        sb.append(semester.getName());
         sb.append("|");
-        sb.append(departmentid);
+        sb.append(departmnet.getName());
         return sb.toString(); 
     }
 
@@ -268,11 +268,11 @@ public class Course implements Serializable
 		this.semester = semester;
 	}
 
-	public List<FacultyPersonel> getInstructors() {
+	public List<FacultyPersonnel> getInstructors() {
 		return instructors;
 	}
 
-	public void setInstructors(List<FacultyPersonel> instructors) {
+	public void setInstructors(List<FacultyPersonnel> instructors) {
 		this.instructors = instructors;
 	}
 

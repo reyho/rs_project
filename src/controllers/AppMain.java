@@ -22,8 +22,8 @@ public class AppMain {
 		tx.begin();
 		em.persist(b);
 		tx.commit();
-		 */
+		 
 		 BuildingsController bc = new BuildingsController();
-		 bc.createBuilding("TT_build_07");
+		 bc.createBuilding("TT_build_07");*/
 	}
 }

@@ -37,8 +37,8 @@ public class TimeSlot implements Serializable
     private Float      starttime    ;
     private Float      length       ;
     private Byte       day          ;
-    private Integer    roomid       ;
-    private Integer    groupid      ;
+    //private Integer    roomid       ;
+    //private Integer    groupid      ;
 
     @ManyToOne
     @JoinColumn(name="RoomId")
@@ -146,7 +146,7 @@ public class TimeSlot implements Serializable
      * Set the "roomid" field value
      * This field is mapped on the database column "RoomId" ( type "INT", NotNull : true ) 
      * @param roomid
-     */
+     
     public void setRoomid( Integer roomid )
     {
         this.roomid = roomid;
@@ -155,7 +155,7 @@ public class TimeSlot implements Serializable
      * Get the "roomid" field value
      * This field is mapped on the database column "RoomId" ( type "INT", NotNull : true ) 
      * @return the field value
-     */
+     
     public Integer getRoomid()
     {
         return this.roomid;
@@ -166,7 +166,7 @@ public class TimeSlot implements Serializable
      * Set the "groupid" field value
      * This field is mapped on the database column "GroupId" ( type "INT", NotNull : true ) 
      * @param groupid
-     */
+     
     public void setGroupid( Integer groupid )
     {
         this.groupid = groupid;
@@ -175,12 +175,12 @@ public class TimeSlot implements Serializable
      * Get the "groupid" field value
      * This field is mapped on the database column "GroupId" ( type "INT", NotNull : true ) 
      * @return the field value
-     */
+     
     public Integer getGroupid()
     {
         return this.groupid;
     }
-
+    */
 
     //----------------------------------------------------------------------
     // toString METHOD
@@ -195,9 +195,9 @@ public class TimeSlot implements Serializable
         sb.append("|");
         sb.append(day);
         sb.append("|");
-        sb.append(roomid);
+        sb.append(room.getName());
         sb.append("|");
-        sb.append(groupid);
+        sb.append(group);
         return sb.toString(); 
     }
 

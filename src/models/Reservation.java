@@ -41,12 +41,16 @@ public class Reservation implements Serializable
     private Date       begindatetime ;
     @Temporal(TemporalType.TIMESTAMP)
     private Date       enddatetime  ;
-    private Integer    reservedbyid ;
-    private Integer    roomid       ;
+    //private Integer    reservedbyid ;
+    //private Integer    roomid       ;
 
     @ManyToOne
     @JoinColumn(name="ReservedbyId")
-    private FacultyPersonel reservedBy;
+    private FacultyPersonnel reservedBy;
+    
+    @ManyToOne
+    @JoinColumn(name="RoomId")
+    private Room room;
     
     /**
      * Default constructor
@@ -146,7 +150,7 @@ public class Reservation implements Serializable
      * Set the "reservedbyid" field value
      * This field is mapped on the database column "ReservedById" ( type "INT", NotNull : true ) 
      * @param reservedbyid
-     */
+    
     public void setReservedbyid( Integer reservedbyid )
     {
         this.reservedbyid = reservedbyid;
@@ -155,7 +159,7 @@ public class Reservation implements Serializable
      * Get the "reservedbyid" field value
      * This field is mapped on the database column "ReservedById" ( type "INT", NotNull : true ) 
      * @return the field value
-     */
+     
     public Integer getReservedbyid()
     {
         return this.reservedbyid;
@@ -166,7 +170,7 @@ public class Reservation implements Serializable
      * Set the "roomid" field value
      * This field is mapped on the database column "RoomId" ( type "INT", NotNull : true ) 
      * @param roomid
-     */
+     
     public void setRoomid( Integer roomid )
     {
         this.roomid = roomid;
@@ -175,12 +179,12 @@ public class Reservation implements Serializable
      * Get the "roomid" field value
      * This field is mapped on the database column "RoomId" ( type "INT", NotNull : true ) 
      * @return the field value
-     */
+     
     public Integer getRoomid()
     {
         return this.roomid;
     }
-
+	*/
 
     //----------------------------------------------------------------------
     // toString METHOD
@@ -195,18 +199,26 @@ public class Reservation implements Serializable
         sb.append("|");
         sb.append(enddatetime);
         sb.append("|");
-        sb.append(reservedbyid);
+        sb.append(reservedBy);
         sb.append("|");
-        sb.append(roomid);
+        sb.append(room);
         return sb.toString(); 
     }
 
-	public FacultyPersonel getReservedBy() {
+	public FacultyPersonnel getReservedBy() {
 		return reservedBy;
 	}
 
-	public void setReservedBy(FacultyPersonel reservedBy) {
+	public void setReservedBy(FacultyPersonnel reservedBy) {
 		this.reservedBy = reservedBy;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 
 

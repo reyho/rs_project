@@ -39,8 +39,8 @@ public class Student implements Serializable
     private String     name         ;
     private String     lastname     ;
     private String     studentid    ;
-    private Integer    departmentid ;
-    private Integer    semesterid   ;
+    //private Integer    departmentid ;
+    //private Integer    semesterid   ;
 
     @ManyToOne
     @JoinColumn(name="SemesterId")
@@ -156,7 +156,7 @@ public class Student implements Serializable
      * Set the "departmentid" field value
      * This field is mapped on the database column "DepartmentId" ( type "INT", NotNull : true ) 
      * @param departmentid
-     */
+     
     public void setDepartmentid( Integer departmentid )
     {
         this.departmentid = departmentid;
@@ -165,7 +165,7 @@ public class Student implements Serializable
      * Get the "departmentid" field value
      * This field is mapped on the database column "DepartmentId" ( type "INT", NotNull : true ) 
      * @return the field value
-     */
+     
     public Integer getDepartmentid()
     {
         return this.departmentid;
@@ -176,7 +176,7 @@ public class Student implements Serializable
      * Set the "semesterid" field value
      * This field is mapped on the database column "SemesterId" ( type "INT", NotNull : true ) 
      * @param semesterid
-     */
+     
     public void setSemesterid( Integer semesterid )
     {
         this.semesterid = semesterid;
@@ -185,12 +185,12 @@ public class Student implements Serializable
      * Get the "semesterid" field value
      * This field is mapped on the database column "SemesterId" ( type "INT", NotNull : true ) 
      * @return the field value
-     */
+     
     public Integer getSemesterid()
     {
         return this.semesterid;
     }
-
+    */
     public List<Group> getGroups()
     {
         return this.groups;
@@ -209,9 +209,9 @@ public class Student implements Serializable
         sb.append("|");
         sb.append(studentid);
         sb.append("|");
-        sb.append(departmentid);
+        sb.append(department.getName());
         sb.append("|");
-        sb.append(semesterid);
+        sb.append(semester.getName());
         return sb.toString(); 
     }
 

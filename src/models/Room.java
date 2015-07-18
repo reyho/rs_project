@@ -35,7 +35,7 @@ public class Room implements Serializable
 
     private Integer    name         ;
     private Integer    capacity     ;
-    private Integer    buildingid   ;
+    //private Integer    buildingid   ;
 
     @ManyToOne
     @JoinColumn(name="BuildingId")
@@ -118,7 +118,7 @@ public class Room implements Serializable
      * Set the "buildingid" field value
      * This field is mapped on the database column "BuildingId" ( type "INT", NotNull : true ) 
      * @param buildingid
-     */
+     
     public void setBuildingid( Integer buildingid )
     {
         this.buildingid = buildingid;
@@ -127,12 +127,12 @@ public class Room implements Serializable
      * Get the "buildingid" field value
      * This field is mapped on the database column "BuildingId" ( type "INT", NotNull : true ) 
      * @return the field value
-     */
+     
     public Integer getBuildingid()
     {
         return this.buildingid;
     }
-
+	*/
 
     //----------------------------------------------------------------------
     // toString METHOD
@@ -145,7 +145,7 @@ public class Room implements Serializable
         sb.append("|");
         sb.append(capacity);
         sb.append("|");
-        sb.append(buildingid);
+        sb.append(building);
         return sb.toString(); 
     }
 
