@@ -1,12 +1,15 @@
 package controllers;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Building;
 
 public class BuildingsController {
@@ -35,6 +38,14 @@ public class BuildingsController {
       		  em.createQuery("SELECT e FROM buildings e WHERE e.Name = :name", Building.class);
     	query.setParameter("name", bName); 
     	Building b = query.getSingleResult();
+    	return b;
+    }
+    
+    public ObservableList<Building> findBuildingAll() {
+    	TypedQuery<Building> query =
+      		  em.createQuery("SELECT e FROM Building e", Building.class);
+    	List<Building> bList = query.getResultList();
+    	ObservableList<Building> b = FXCollections.observableArrayList(bList);
     	return b;
     }
     

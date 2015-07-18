@@ -1,5 +1,6 @@
 package views;
 
+import controllers.BuildingsController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -10,16 +11,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import models.Building;
 
 public class BuildingView extends VBox{
 	
-	TableView<Product> table;
+	TableView<Building> table;
 	TextField nameInput;
+	BuildingsController bc = new BuildingsController();
 	
 	
 	
 	public BuildingView() {
-		TableColumn<Product, String> nameColumn = new TableColumn<>("Name");
+		TableColumn<Building, String> nameColumn = new TableColumn<>("Name");
 		nameColumn.setMinWidth(200);
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 		
@@ -39,34 +42,33 @@ public class BuildingView extends VBox{
 		hBox.getChildren().addAll(nameInput, addButton, deleteButton);
 
 		
-		table = new TableView<>(getProduct());
+		table = new TableView<>(getBuilding());
 		table.getColumns().add(nameColumn);
 		
 		
 		this.getChildren().addAll(table, hBox);
 	}
 	private void deleteButtonClicked() {
-		ObservableList<Product> allProducts, productSelected;
-		
-		allProducts = table.getItems();
-		productSelected = table.getSelectionModel().getSelectedItems();		
-		productSelected.forEach(allProducts::remove);
+		ObservableList<Building> allBuildings, buildingSelected;
+		allBuildings = table.getItems();
+		buildingSelected = table.getSelectionModel().getSelectedItems();
+		bc.deleteBuilding(buildingSelected.get(0).getId());
+		buildingSelected.forEach(allBuildings::remove);
 	}
 
 
 	private void addButtonClicked() {
-		Product product = new Product();
-		product.setName(nameInput.getText());
-		
-		table.getItems().add(product);
+		Building building = bc.createBuilding(nameInput.getText());
+		table.getItems().add(building);
 		nameInput.clear();
 	}
 
 
-	public ObservableList<Product> getProduct(){
-		ObservableList<Product> products = FXCollections.observableArrayList();
-		
-		return products;
+	public ObservableList<Building> getBuilding(){
+		//ObservableList<Building> buildings = FXCollections.observableArrayList();
+		// read entities from database
+		ObservableList<Building> buildings = bc.findBuildingAll();
+		return buildings;
 		
 	}
 
