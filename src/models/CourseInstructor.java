@@ -20,8 +20,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table
-public class CourseInstructors implements Serializable
+@Table(name="course_instructors")
+public class CourseInstructor implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,7 @@ public class CourseInstructors implements Serializable
     /**
      * Default constructor
      */
-    public CourseInstructors()
+    public CourseInstructor()
     {
         super();
     }

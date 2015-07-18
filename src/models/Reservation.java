@@ -15,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Entity bean for table "reservations"
@@ -23,8 +25,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table
-public class Reservations implements Serializable
+@Table(name="reservations")
+public class Reservation implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
@@ -33,7 +35,9 @@ public class Reservations implements Serializable
     private Integer    id           ; // Primary Key
 
     private String     type         ;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date       begindatetime ;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date       enddatetime  ;
     private Integer    reservedbyid ;
     private Integer    roomid       ;
@@ -41,7 +45,7 @@ public class Reservations implements Serializable
     /**
      * Default constructor
      */
-    public Reservations()
+    public Reservation()
     {
         super();
     }

@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="RS_Project">
-		<class>models.Buildings</class>
-		<class>models.CourseInstructors</class>
-		<class>models.Courses</class>
-		<class>models.Departments</class>
+		<class>models.Building</class>
+		<class>models.Course</class>
+		<class>models.CourseInstructor</class>
+		<class>models.Department</class>
 		<class>models.FacultyPersonel</class>
-		<class>models.Groups</class>
-		<class>models.Reservations</class>
-		<class>models.Roles</class>
-		<class>models.Rooms</class>
-		<class>models.Semesters</class>
-		<class>models.Students</class>
-		<class>models.StudentsGroups</class>
-		<class>models.TimeSlots</class>
+		<class>models.Group</class>
+		<class>models.Reservation</class>
+		<class>models.Role</class>
+		<class>models.Room</class>
+		<class>models.Semester</class>
+		<class>models.Student</class>
+		<class>models.StudentsGroup</class>
+		<class>models.TimeSlot</class>
+		
+		<properties>
+         <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/rs_project"/>
+         <property name="javax.persistence.jdbc.user" value="root"/>
+         <property name="javax.persistence.jdbc.password" value=""/>
+         <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+         <property name="eclipselink.logging.level" value="FINE"/>
+         <property name="eclipselink.ddl-generation" value="create-tables"/>
+         <property name="eclipselink.exclude-eclipselink-orm" value="false"/>
+      </properties>
+		
 	</persistence-unit>
 </persistence>

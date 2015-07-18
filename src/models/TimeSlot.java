@@ -22,8 +22,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table
-public class TimeSlots implements Serializable
+@Table(name="time_slots")
+public class TimeSlot implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,7 @@ public class TimeSlots implements Serializable
     /**
      * Default constructor
      */
-    public TimeSlots()
+    public TimeSlot()
     {
         super();
     }

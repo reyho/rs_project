@@ -22,8 +22,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table
-public class Students implements Serializable
+@Table(name="students")
+public class Student implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,7 @@ public class Students implements Serializable
     /**
      * Default constructor
      */
-    public Students()
+    public Student()
     {
         super();
     }
