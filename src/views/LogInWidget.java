@@ -1,21 +1,19 @@
 package views;
 
-import com.sun.prism.paint.Color;
-
 import controllers.AppMain;
 import controllers.FacultyPersonnelController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Paint;
 import models.FacultyPersonnel;
 
-public class LogInView extends GridPane {
+public class LogInWidget extends GridPane {
 	AppMain appMain;
 	
-	public LogInView(AppMain app) {
+	public LogInWidget(AppMain app) {
 		appMain = app;
 		
 		this.setPadding(new Insets(10,10,10,10));
@@ -38,7 +36,7 @@ public class LogInView extends GridPane {
 		Label passLabel = new Label("Password");
 		GridPane.setConstraints(passLabel, 0, 2);
 		
-		TextField passInput = new TextField();
+		PasswordField  passInput = new PasswordField ();
 		passInput.setPromptText("password");
 		GridPane.setConstraints(passInput, 1, 2);
 		
@@ -54,12 +52,17 @@ public class LogInView extends GridPane {
 			}
 		});
 		
-		
+		// For students or guest users
 		Label guestLabel = new Label("For students:");
 		GridPane.setConstraints(guestLabel, 0 , 5);
 		
 		Button loginButtonGuest = new Button("Student Access");
 		GridPane.setConstraints(loginButtonGuest, 1, 5);
+		loginButtonGuest.setOnAction(e->{
+			// null user is treated as guest
+			appMain.setUser(null);
+			appMain.renderMainLayout();
+		});
 		
 		this.getChildren().addAll(errorMsg, nameLabel, nameInput, passLabel, passInput, loginButton, guestLabel, loginButtonGuest);
 		

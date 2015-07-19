@@ -1,7 +1,6 @@
 package views;
 
 import controllers.RoomController;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -24,6 +23,7 @@ public class RoomView extends VBox{
 	
 	
 	
+	@SuppressWarnings("unchecked")
 	public RoomView() {
 		TableColumn<Room, String> nameColumn = new TableColumn<>("Name");
 		nameColumn.setMinWidth(200);
@@ -46,7 +46,6 @@ public class RoomView extends VBox{
 		capacityInput.setMinWidth(100);
 		
 		buildingIdInput = new ComboBox<>();
-		//buildingIdInput.setPromptText("BuildingId");
 		buildingIdInput.setMinWidth(100);
 		
 		for(Building building : rc.getAllBuildings()) {
