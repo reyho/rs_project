@@ -84,7 +84,7 @@ public class NavigationWidget extends VBox{
 		// Load views corresponding to list labels
 		switch (selectedIndex) {
 		case 0:
-			
+			appMain.setContentPane(new TimeTableView());
 			break;
 		case 1:
 			
