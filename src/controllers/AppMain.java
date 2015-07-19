@@ -9,6 +9,7 @@ import models.FacultyPersonnel;
 import views.BuildingView;
 import views.LogInWidget;
 import views.NavigationWidget;
+import views.TimeTableView;
 
 public class AppMain extends Application {
 	private Stage window;
@@ -49,7 +50,7 @@ public class AppMain extends Application {
 	
 	public void renderMainLayout() {
 		getMainLayout().setLeft(new NavigationWidget(this, user));
-		getMainLayout().setCenter(new BuildingView());
+		getMainLayout().setCenter(new TimeTableView());
 		window.setScene(new Scene(getMainLayout(), 1200, 600));
 		window.setTitle("RS_app");
 		window.show();
