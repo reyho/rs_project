@@ -197,7 +197,7 @@ public class Group implements Serializable
         sb.append("|");
         sb.append(course.getName());
         sb.append("|");
-        sb.append(instructor);
+        sb.append(getInstructor());
         return sb.toString(); 
     }
 
@@ -215,6 +215,14 @@ public class Group implements Serializable
 
 	public void setTimeSlot(TimeSlot timeSlot) {
 		this.timeSlot = timeSlot;
+	}
+
+	public FacultyPersonnel getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(FacultyPersonnel instructor) {
+		this.instructor = instructor;
 	} 
 
 
