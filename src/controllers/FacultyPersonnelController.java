@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -7,6 +9,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Role;
 import models.Department;
 import models.FacultyPersonnel;
@@ -26,7 +30,7 @@ public class FacultyPersonnelController {
 		 
 	}
     
-    public FacultyPersonnel createFacultyMember(String username, String pass, String firstName, String lastName, String title, int rId, int dId) {
+    public FacultyPersonnel createFacultyMember(String username, String pass, String firstName, String lastName, String title, Role role, Department department) {
     	FacultyPersonnel e = new FacultyPersonnel();
     	// id is automatically set
     	e.setUsername(username);
@@ -34,14 +38,14 @@ public class FacultyPersonnelController {
     	e.setName(firstName);
     	e.setLastname(lastName);
     	e.setTitle(title);
-    	if(rId != 1) {
+    	if(role.getId() != 1) {
     		//e.setRoleid(rId);
-    		e.setRole(em.find(Role.class, rId));
+    		e.setRole(role);
     	} else {
     		//e.setRoleid(2);
     		e.setRole(em.find(Role.class, 2));
     	}
-    	e.setDepartmnet(em.find(Department.class, dId));
+    	e.setDepartment(department);
     	
     	tx.begin( );
         em.persist( e );
@@ -49,6 +53,29 @@ public class FacultyPersonnelController {
 		return e;
     }
     
+    public ObservableList<FacultyPersonnel> getAllPersonnel() {
+    	TypedQuery<FacultyPersonnel> query =
+      		  em.createQuery("SELECT e FROM FacultyPersonnel e", FacultyPersonnel.class);
+    	List<FacultyPersonnel> bList = query.getResultList();
+    	ObservableList<FacultyPersonnel> b = FXCollections.observableArrayList(bList);
+    	return b;
+    }
+    
+    public ObservableList<Role> getAllRoles() {
+    	TypedQuery<Role> query =
+      		  em.createQuery("SELECT e FROM Role e", Role.class);
+    	List<Role> bList = query.getResultList();
+    	ObservableList<Role> b = FXCollections.observableArrayList(bList);
+    	return b;
+    }
+    
+    public ObservableList<Department> getAllDepartments() {
+    	TypedQuery<Department> query =
+      		  em.createQuery("SELECT e FROM Department e", Department.class);
+    	List<Department> bList = query.getResultList();
+    	ObservableList<Department> b = FXCollections.observableArrayList(bList);
+    	return b;
+    }
     
     public FacultyPersonnel findFacultyMemberByUsername(String uName) {
     	TypedQuery<FacultyPersonnel> query =

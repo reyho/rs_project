@@ -51,7 +51,7 @@ public class Course implements Serializable
     
     @ManyToOne
     @JoinColumn(name="DepartmentId")
-    private Department departmnet;
+    private Department department;
     
     @ManyToMany
     @JoinTable(name="course_instructors",
@@ -256,7 +256,7 @@ public class Course implements Serializable
         sb.append("|");
         sb.append(semester.getName());
         sb.append("|");
-        sb.append(departmnet.getName());
+        sb.append(department.getName());
         return sb.toString(); 
     }
 
@@ -276,12 +276,12 @@ public class Course implements Serializable
 		this.instructors = instructors;
 	}
 
-	public Department getDepartmnet() {
-		return departmnet;
+	public Department getDepartment() {
+		return department;
 	}
 
-	public void setDepartmnet(Department departmnet) {
-		this.departmnet = departmnet;
+	public void setDepartment(Department departmnet) {
+		this.department = departmnet;
 	}
 
 	public List<Group> getGroups() {

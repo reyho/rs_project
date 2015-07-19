@@ -7,6 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import models.FacultyPersonnel;
 import views.BuildingView;
+import views.CourseView;
 import views.LogInView;
 import views.RoomView;
 
@@ -24,7 +25,7 @@ public class AppMain extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		window = primaryStage;
 		// Create a log in scene and place it in the stage
-		Scene scene = new Scene(new RoomView());
+		Scene scene = new Scene(new CourseView());
 		window.setTitle("LogIn"); // Set the stage title
 		window.setScene(scene); // Place the scene in the stage
 		window.show(); // Display the stage

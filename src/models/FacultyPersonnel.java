@@ -66,7 +66,7 @@ public class FacultyPersonnel implements Serializable
     
     @ManyToOne
     @JoinColumn(name="DepartmentId")
-    private Department departmnet;
+    private Department department;
     
     
     /**
@@ -266,7 +266,7 @@ public class FacultyPersonnel implements Serializable
         sb.append("|");
         sb.append(role.getPrivilege());
         sb.append("|");
-        sb.append(departmnet.getName());
+        sb.append(department.getName());
         return sb.toString(); 
     }
     /*
@@ -294,12 +294,12 @@ public class FacultyPersonnel implements Serializable
 		this.groups = groups;
 	}
 	
-	public Department getDepartmnet() {
-		return departmnet;
+	public Department getDepartment() {
+		return department;
 	}
 	
-	public void setDepartmnet(Department departmnet) {
-		this.departmnet = departmnet;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 	
 	public List<Reservation> getReservations() {
