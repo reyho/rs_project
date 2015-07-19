@@ -22,8 +22,10 @@ public class AppMain extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		window = primaryStage;
+		
+		this.renderLogInScreen();
 		// Create a log in scene and place it in the stage
-		Scene scene = new Scene(new BuildingView());
+		Scene scene = new Scene(new LogInView(this));
 		window.setTitle("LogIn"); // Set the stage title
 		window.setScene(scene); // Place the scene in the stage
 		window.show(); // Display the stage
@@ -38,6 +40,30 @@ public class AppMain extends Application {
 		
 		
 		
+		
+	}
+
+	private void renderLogInScreen() {
+		Scene s = new Scene(new LogInView(this));
+		window.setTitle("Log In"); // Set the stage title
+		window.setScene(s); // Place the scene in the stage
+		window.show(); // Display the stage
+	}
+	
+	
+	
+
+	public FacultyPersonnel getUser() {
+		return user;
+	}
+
+
+	public void setUser(FacultyPersonnel user) {
+		this.user = user;
+	}
+
+
+	public void renderMainLayout() {
 		
 	}
 	
