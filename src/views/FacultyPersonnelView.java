@@ -31,22 +31,22 @@ public class FacultyPersonnelView extends VBox{
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 		
 		TableColumn<FacultyPersonnel, String> lastnameColumn = new TableColumn<>("Lastname");		
-		nameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+		lastnameColumn.setCellValueFactory(new PropertyValueFactory<>("lastname"));
 		
 		TableColumn<FacultyPersonnel, String> usernameColumn = new TableColumn<>("Username");		
-		nameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+		usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
 		
 		TableColumn<FacultyPersonnel, String> passwordColumn = new TableColumn<>("Password");		
-		nameColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+		passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
 		
 		TableColumn<FacultyPersonnel, String> titleColumn = new TableColumn<>("Title");		
-		nameColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+		titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
 		
 		TableColumn<FacultyPersonnel, Role> roleColumn = new TableColumn<>("Role");		
-		nameColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
+		roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
 		
 		TableColumn<FacultyPersonnel, Department> departmentColumn = new TableColumn<>("Department");		
-		nameColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
+		departmentColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
 		
 		nameInput = new TextField();
 		nameInput.setPromptText("Name");
@@ -62,11 +62,11 @@ public class FacultyPersonnelView extends VBox{
 		
 		titleInput = new TextField();
 		titleInput.setPromptText("Title");
-		
+		roleInput = new ComboBox<>();
 		for(Role rol : fpc.getAllRoles()) {
 			roleInput.getItems().add(rol);
 		}
-		
+		departmentInput = new ComboBox<>();
 		for(Department dep : fpc.getAllDepartments()) {
 			departmentInput.getItems().add(dep);
 		}
