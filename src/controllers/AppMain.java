@@ -1,15 +1,14 @@
 package controllers;
 
-
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import models.FacultyPersonnel;
 import views.BuildingView;
-import views.CourseView;
-import views.LogInView;
-import views.RoomView;
+import views.LogInWidget;
+import views.NavigationWidget;
 
 public class AppMain extends Application {
 	private Stage window;
@@ -24,41 +23,50 @@ public class AppMain extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		window = primaryStage;
-		// Create a log in scene and place it in the stage
-		Scene scene = new Scene(new CourseView());
-		window.setTitle("LogIn"); // Set the stage title
-		window.setScene(scene); // Place the scene in the stage
+		setMainLayout(new BorderPane());
+		
+		this.renderLogInScreen();
+	}
+
+	private void renderLogInScreen() {
+		Scene s = new Scene(new LogInWidget(this));
+		window.setTitle("Log In"); // Set the stage title
+		window.setScene(s); // Place the scene in the stage
 		window.show(); // Display the stage
-		
-		// Login action returns a user and his privilege number is implicit.
-		
-		// Place nodes in the pane
-		//mainLayout.setLeft(new NavTest(mainLayout));
-		
-		//mainLayout.setCenter(LogInView.getLogInScreen());
-		
-		
-		
-		
-		
 	}
 	
-	/*
-	public static void main(String[] args) {
-		/*EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("RS_Project");
-		EntityManager em = emfactory.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
+	
+	public FacultyPersonnel getUser() {
+		return user;
+	}
 
-		
 
-		Building b = new Building();
-		b.setName("TT_build_06");
-		//b.setId(2);
+	public void setUser(FacultyPersonnel user) {
+		this.user = user;
+	}
 
-		tx.begin();
-		em.persist(b);
-		tx.commit();
-		 
-		 BuildingsController bc = new BuildingsController();
-		 bc.createBuilding("TT_build_07");*/
+	
+	
+	public void renderMainLayout() {
+		getMainLayout().setLeft(new NavigationWidget(this, user));
+		getMainLayout().setCenter(new BuildingView());
+		window.setScene(new Scene(getMainLayout(), 1200, 600));
+		window.setTitle("RS_app");
+		window.show();
+	}
+
+
+	public void setContentPane(Node view) {
+		getMainLayout().setCenter(view);
+	}
+
+
+	public BorderPane getMainLayout() {
+		return mainLayout;
+	}
+
+
+	public void setMainLayout(BorderPane mainLayout) {
+		this.mainLayout = mainLayout;
+	}
 }
