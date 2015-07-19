@@ -10,6 +10,9 @@ import javax.persistence.TypedQuery;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import models.FacultyPersonnel;
+import models.Room;
+import models.Semester;
 import models.TimeSlot;
 
 public class TimeTableController {
@@ -31,4 +34,28 @@ public class TimeTableController {
     	ObservableList<TimeSlot> b = FXCollections.observableArrayList(bList);
     	return b;
     }
+	
+	public ObservableList<Room> getAllRooms(){
+		TypedQuery<Room> query =
+	      		  em.createQuery("SELECT e FROM Room e", Room.class);
+	    	List<Room> bList = query.getResultList();
+	    	ObservableList<Room> b = FXCollections.observableArrayList(bList);
+	    	return b;
+	}
+	
+	public ObservableList<Semester> getAllSemesters(){
+		TypedQuery<Semester> query =
+	      		  em.createQuery("SELECT e FROM Semester e", Semester.class);
+	    	List<Semester> bList = query.getResultList();
+	    	ObservableList<Semester> b = FXCollections.observableArrayList(bList);
+	    	return b;
+	}
+	
+	public ObservableList<FacultyPersonnel> getAllInstructors(){
+		TypedQuery<FacultyPersonnel> query =
+	      		  em.createQuery("SELECT e FROM FacultyPersonnel e", FacultyPersonnel.class);
+	    	List<FacultyPersonnel> bList = query.getResultList();
+	    	ObservableList<FacultyPersonnel> b = FXCollections.observableArrayList(bList);
+	    	return b;
+	}
 }
