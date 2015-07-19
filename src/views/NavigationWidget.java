@@ -53,7 +53,7 @@ public class NavigationWidget extends VBox{
 		Label label3 = new Label("Admin Section");
 		// item that can be selected in the admin list
 		ObservableList<String> itemsAdmin =FXCollections.observableArrayList (
-		    "Buildings", "Rooms", "Courses", "FacultyPersonnel", "Students", "Groups", "TimeSlots");
+		    "Buildings", "Rooms", "Courses", "FacultyPersonnel", "Students", "Groups", "TimeSlots", "Departments");
 		listAdmin.setItems(itemsAdmin);
 		listAdmin.setPrefHeight(200);
 		listAdmin.setOnMouseClicked(e->{
@@ -134,6 +134,9 @@ public class NavigationWidget extends VBox{
 			break;
 		case 6:
 			appMain.setContentPane(new TimeSlotView());
+			break;
+		case 7:
+			appMain.setContentPane(new DepartmentView());
 			break;
 		default:
 			break;
