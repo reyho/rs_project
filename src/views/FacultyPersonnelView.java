@@ -111,8 +111,8 @@ public class FacultyPersonnelView extends VBox{
 	public ObservableList<FacultyPersonnel> getPersonnel(){
 		//ObservableList<Course> courses = FXCollections.observableArrayList();
 		// read entities from database
-		ObservableList<FacultyPersonnel> courses = fpc.getAllPersonnel();
-		return courses;
+		ObservableList<FacultyPersonnel> personnel = fpc.getAllPersonnel();
+		return personnel;
 		
 	}
 

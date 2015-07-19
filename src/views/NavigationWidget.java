@@ -126,6 +126,9 @@ public class NavigationWidget extends VBox{
 		case 3:
 			appMain.setContentPane(new FacultyPersonnelView());
 			break;
+		case 4:
+			appMain.setContentPane(new StudentView());
+			break;
 		default:
 			break;
 		}
