@@ -78,15 +78,15 @@ public class CourseView extends VBox{
 		nolabInput = new TextField();
 		nolabInput.setPromptText("Nolab");
 		
-		semesterInput = new ComboBox<Semester>();
+		semesterInput = new ComboBox<>();
 		for(Semester sem : cc.getAllSemesters()) {
 			semesterInput.getItems().add(sem);
 		}
-		departmentInput = new ComboBox<Department>();
+		departmentInput = new ComboBox<>();
 		for(Department dep : cc.getAllDepartments()) {
 			departmentInput.getItems().add(dep);
 		}
-		instructorsInput = new ComboBox<FacultyPersonnel>();
+		instructorsInput = new ComboBox<>();
 		for(FacultyPersonnel ins : cc.getAllInstructors()) {
 			instructorsInput.getItems().add(ins);
 		}
