@@ -29,6 +29,7 @@ public class CourseView extends VBox{
 	ComboBox<Department> departmentInput;
 	ComboBox<FacultyPersonnel> instructorsInput;
 	Course course;
+	ObservableList<Course> courseSelected2;
 	CourseController cc = new CourseController();
 	
 	
@@ -121,7 +122,10 @@ public class CourseView extends VBox{
 		table = new TableView<>(getCourse());
 		table.getColumns().addAll(nameColumn, requiredColumn, nolecturesColumn, 
 				noauditColumn, nolabColumn, semesterColumn, departmentColumn);
-		table.setOnMouseClicked(e -> table2.setItems(getCourseInstructors()));
+		table.setOnMouseClicked(e -> {table2.setItems(getCourseInstructors());
+				courseSelected2 = table.getSelectionModel().getSelectedItems();
+				
+				});
 		
 		this.getChildren().addAll(table, hBox, table2, hBox2);
 	}
@@ -134,11 +138,12 @@ public class CourseView extends VBox{
 	}
 	
 	private void deleteButtonClicked2() {
-		ObservableList<Course> allCourses, courseSelected;
-		allCourses = table.getItems();
-		courseSelected = table.getSelectionModel().getSelectedItems();
-		cc.deleteCourse(courseSelected.get(0).getId());
-		courseSelected.forEach(allCourses::remove);
+		ObservableList<FacultyPersonnel> allPersonnel, personnelSelected;
+		allPersonnel = table2.getItems();
+		personnelSelected = table2.getSelectionModel().getSelectedItems();
+		cc.deleteCourse(personnelSelected.get(0).getId());
+		personnelSelected.forEach(allPersonnel::remove);
+		cc.setInstructor(courseSelected2.get(0), table2.getItems());
 	}
 
 
@@ -152,12 +157,12 @@ public class CourseView extends VBox{
 	}
 	
 	private void addButtonClicked2() {
-		Course course = cc.createCourse(nameInput.getText(),
-				Byte.parseByte(requiredInput.getText()), Byte.parseByte(nolecturesInput.getText()),
-				Byte.parseByte(noauditInput.getText()), Byte.parseByte(nolabInput.getText()), 
-				semesterInput.getValue(), departmentInput.getValue());
-		table.getItems().add(course);
-		nameInput.clear();
+		
+		
+		FacultyPersonnel facultyPersonnel = instructorsInput.getValue();
+		table2.getItems().add(facultyPersonnel);
+		cc.setInstructor(courseSelected2.get(0), table2.getItems());
+		
 	}
 
 

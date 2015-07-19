@@ -14,6 +14,7 @@ import models.Building;
 import models.Course;
 import models.Department;
 import models.FacultyPersonnel;
+import models.Role;
 import models.Semester;
 
 public class CourseController {
@@ -28,6 +29,8 @@ public class CourseController {
     	//bc.deleteCourse(bc.findCourseByName("TT_build_02").getId());
     	//System.out.println(bc.getAllBuildings().get(0));
 	}
+    
+    
     
     public Course createCourse(String name, Byte required, Byte nolectures, Byte noaudit, Byte nolab, Semester semester, Department department) {
     	Course r = new Course();
@@ -45,6 +48,14 @@ public class CourseController {
         em.persist( r );
         tx.commit();
 		return r;
+    }
+    
+    public void setInstructor(Course course,List<FacultyPersonnel> instructors){
+    	course.setInstructors(instructors);
+    	
+    	tx.begin( );
+        em.persist( course );
+        tx.commit();
     }
     
     public Course findCourseByName(String name) {
