@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import models.FacultyPersonnel;
 import views.BuildingView;
 import views.LogInView;
+import views.Navigation;
 
 public class AppMain extends Application {
 	private Stage window;
@@ -22,14 +23,17 @@ public class AppMain extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		window = primaryStage;
+		mainLayout = new BorderPane();
 		
 		this.renderLogInScreen();
+		
 		// Create a log in scene and place it in the stage
-		Scene scene = new Scene(new LogInView(this));
+		/*
+		Scene scene = new Scene(new Navigation(user));
 		window.setTitle("LogIn"); // Set the stage title
 		window.setScene(scene); // Place the scene in the stage
 		window.show(); // Display the stage
-		
+		*/
 		// Login action returns a user and his privilege number is implicit.
 		
 		// Place nodes in the pane
@@ -64,7 +68,11 @@ public class AppMain extends Application {
 
 
 	public void renderMainLayout() {
-		
+		mainLayout.setLeft(new Navigation(user));
+		mainLayout.setCenter(new BuildingView());
+		window.setScene(new Scene(mainLayout, 800, 600));
+		window.setTitle("RS_app");
+		window.show();
 	}
 	
 	/*
