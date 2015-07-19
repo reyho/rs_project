@@ -1,7 +1,6 @@
 package views;
 
 import controllers.BuildingsController;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
