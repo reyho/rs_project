@@ -242,21 +242,9 @@ public class Course implements Serializable
     //----------------------------------------------------------------------
     public String toString() { 
         StringBuffer sb = new StringBuffer(); 
-        sb.append(id);
-        sb.append("|");
+        
         sb.append(name);
-        sb.append("|");
-        sb.append(required);
-        sb.append("|");
-        sb.append(nolectures);
-        sb.append("|");
-        sb.append(noaudit);
-        sb.append("|");
-        sb.append(nolab);
-        sb.append("|");
-        sb.append(semester.getName());
-        sb.append("|");
-        sb.append(department.getName());
+        
         return sb.toString(); 
     }
 

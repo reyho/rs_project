@@ -201,17 +201,13 @@ public class Student implements Serializable
     //----------------------------------------------------------------------
     public String toString() { 
         StringBuffer sb = new StringBuffer(); 
-        sb.append(id);
-        sb.append("|");
+        
         sb.append(name);
         sb.append("|");
         sb.append(lastname);
         sb.append("|");
         sb.append(studentid);
-        sb.append("|");
-        sb.append(department.getName());
-        sb.append("|");
-        sb.append(semester.getName());
+        
         return sb.toString(); 
     }
 

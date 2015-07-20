@@ -1,5 +1,7 @@
 package views;
 
+import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
+
 import controllers.GroupController;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -22,7 +24,8 @@ public class GroupView extends VBox{
 	
 	TableView<Group> table;
 	TableView<Student> table2;
-	TextField typeInput, nameInput;
+	TextField nameInput;
+	ComboBox<String> typeInput;
 	ComboBox<FacultyPersonnel> personnelInput;
 	ComboBox<Course> courseInput;
 	ComboBox<Student> studentInput;
@@ -47,11 +50,11 @@ public class GroupView extends VBox{
 		TableColumn<Student, Course> studentColumn = new TableColumn<>("Student");		
 		studentColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 		
-		typeInput = new TextField();
-		typeInput.setPromptText("Type");
-		
 		nameInput = new TextField();
 		nameInput.setPromptText("Name");
+		
+		typeInput = new ComboBox<>();
+		typeInput.getItems().addAll("P", "AV", "LV");
 		
 		personnelInput = new ComboBox<>();
 		for(FacultyPersonnel per : gc.getAllInstructors()) {
@@ -129,10 +132,10 @@ public class GroupView extends VBox{
 	}
 	
 	private void addButtonClicked() {
-		Group group = gc.createGroup(typeInput.getText(), nameInput.getText(), personnelInput.getValue(),
+		Group group = gc.createGroup(typeInput.getValue(), nameInput.getText(), personnelInput.getValue(),
 				courseInput.getValue());
 		table.getItems().add(group);
-		nameInput.clear();
+		
 	}
 	
 	private void addButtonClicked2() {

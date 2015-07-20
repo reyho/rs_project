@@ -187,8 +187,7 @@ public class TimeSlot implements Serializable
     //----------------------------------------------------------------------
     public String toString() { 
         StringBuffer sb = new StringBuffer(); 
-        sb.append(id);
-        sb.append("|");
+        
         sb.append(starttime);
         sb.append("|");
         sb.append(length);

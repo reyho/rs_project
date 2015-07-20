@@ -252,21 +252,13 @@ public class FacultyPersonnel implements Serializable
     //----------------------------------------------------------------------
     public String toString() { 
         StringBuffer sb = new StringBuffer(); 
-        sb.append(id);
-        sb.append("|");
-        sb.append(username);
-        sb.append("|");
-        sb.append(password);
-        sb.append("|");
+        
         sb.append(name);
         sb.append("|");
         sb.append(lastname);
         sb.append("|");
         sb.append(title);
-        sb.append("|");
-        sb.append(role.getPrivilege());
-        sb.append("|");
-        sb.append(department.getName());
+        
         return sb.toString(); 
     }
     /*
