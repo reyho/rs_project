@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 /**
@@ -39,7 +40,10 @@ public class TimeSlot implements Serializable
     private Byte       day          ;
     //private Integer    roomid       ;
     //private Integer    groupid      ;
-
+    
+    @Transient
+    private Float startTimeNice;
+    
     @ManyToOne
     @JoinColumn(name="RoomId")
     private Room room;
@@ -214,6 +218,15 @@ public class TimeSlot implements Serializable
 
 	public void setGroup(Group group) {
 		this.group = group;
+	}
+
+	public Float getStartTimeNice() {
+		return startTimeNice;
+	}
+
+	public void setStartTimeNice(Float startTimeNice) {
+		this.startTimeNice = startTimeNice;
+		this.starttime = startTimeNice - 8;
 	} 
 
 

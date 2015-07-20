@@ -50,7 +50,7 @@ public class TimeSlotController {
     	
     	TimeSlot e = new TimeSlot();
     	// id is automatically set
-    	e.setStarttime(starttime);
+    	e.setStartTimeNice(starttime);
     	e.setLength(length);
     	e.setDay(day);
     	e.setRoom(room);
