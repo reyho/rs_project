@@ -1,12 +1,15 @@
 package views;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
 import controllers.TimeTableController;
+import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
@@ -33,10 +36,12 @@ public class TimeTableView extends VBox {
 	ComboBox<Room> roomsInput;
 	ComboBox<Semester> semesterInput;
 	ComboBox<FacultyPersonnel> personnelInput;
+	Button button = new Button("Filter");
+	
 
 	public TimeTableView() {
 		this.setStyle("-fx-background-color: lightgray;");
-		this.setPrefSize(800, 600);
+		this.setPrefSize(1000, 800);
 		this.setMinWidth(600);
 		this.setMinHeight(400);
 
@@ -47,16 +52,21 @@ public class TimeTableView extends VBox {
 		// horizontal partitioning
 		timeTable.prefWidthProperty().bind(timeSlotsClasses.widthProperty().divide(6).multiply(5));
 		timeSlotLabels.prefWidthProperty().bind(timeSlotsClasses.widthProperty().divide(6));
-
+		
+		// Static layout elements
 		dayLabels.getChildren().addAll(getDayLabels());
-
-		timeTable.getChildren().addAll(getTimeSlots());
 		timeSlotLabels.getChildren().addAll(getTimeSlotLabels());
-
+		
+		
+		// !! TimeTable Pane !!
+		//timeTable.getChildren().addAll(getTimeSlots());
+		
+		
 		// layout the scene.
 		timeSlotsClasses.getChildren().addAll(timeSlotLabels, timeTable);
 		HBox.setHgrow(timeTable, Priority.ALWAYS);
 
+		// Set up filter controls
 		roomsInput = new ComboBox<>();
 		roomsInput.setItems(ttc.getAllRooms());
 
@@ -65,13 +75,32 @@ public class TimeTableView extends VBox {
 
 		personnelInput = new ComboBox<>();
 		personnelInput.setItems(ttc.getAllInstructors());
+		
+		button.setOnAction(e->{
+			Room r = roomsInput.getValue();
+			Semester s = semesterInput.getValue();
+			FacultyPersonnel p = personnelInput.getValue(); 
+			timeTable.getChildren().clear();
+			timeTable.getChildren().addAll(getFilteredTimeSlots(r, s, p));
+		});
 
-		filters.getChildren().addAll(roomsInput, semesterInput, personnelInput);
+		filters.getChildren().addAll(roomsInput, semesterInput, personnelInput, button);
 
-		this.getChildren().addAll(dayLabels, timeSlotsClasses, filters);
+		this.getChildren().addAll(filters, dayLabels, timeSlotsClasses);
 		/*
 		 * stage.setScene(scene); stage.show();
 		 */
+	}
+
+	private List<Label> getFilteredTimeSlots(Room r, Semester s, FacultyPersonnel p) {
+		List<TimeSlot> timeSlots = ttc.filterTimeSlots(r, s, p);
+		List<Label> list =  new ArrayList<Label>();
+		
+		for(TimeSlot ts : timeSlots) {
+			list.add(timeTable.getTimeSlotLabel(ts));
+		}
+		
+		return  list;
 	}
 
 	private List<Label> getTimeSlots() {
@@ -84,10 +113,6 @@ public class TimeTableView extends VBox {
 		for (TimeSlot ts : tSlots) {
 			list.add(timeTable.getTimeSlotLabel(ts));
 		}
-
-		int day = 3;
-		float start = 4f;
-		float duration = 5f;
 
 		return list;
 	}
@@ -108,8 +133,9 @@ public class TimeTableView extends VBox {
 		list.add(timeTable.post("19h - 20h", Color.LIGHTGREY));
 
 		for (Label l : list) {
-			l.prefWidthProperty().bind(dayLabels.widthProperty().divide(6));
-			;
+			//l.prefWidthProperty().bind(dayLabels.widthProperty().divide(6));
+			l.prefHeightProperty().bind(timeSlotsClasses.heightProperty().divide(12));
+		
 		}
 		return list;
 	}
@@ -125,7 +151,6 @@ public class TimeTableView extends VBox {
 		dayL.add(timeTable.post("Th", Color.LIGHTGREY));
 		dayL.add(timeTable.post("Fri", Color.LIGHTGREY));
 
-		int i = 0;
 		for (Label l : dayL) {
 
 			l.prefWidthProperty().bind(dayLabels.widthProperty().divide(6));
@@ -141,7 +166,6 @@ public class TimeTableView extends VBox {
 		}
 
 		Label post(String c, Color color) {
-			// choose a quote and style it.
 			final Label label = new Label(c);
 			label.setStyle("-fx-background-radius: 5; -fx-background-color: " + "rgba(" + (int) 256 * color.getRed()
 					+ ", " + (int) 256 * color.getGreen() + ", " + (int) 256 * color.getBlue() + ", 0.5);"
@@ -157,10 +181,14 @@ public class TimeTableView extends VBox {
 		}
 
 		Label getTimeSlotLabel(TimeSlot ts) {
-			// choose a quote and style it.
-			final Label label = new Label(ts.getGroup().getCourse().getName());
-			label.setStyle(
-					"-fx-background-radius: 5; -fx-background-color: rgba(0, 100, 100, 0.5); -fx-text-fill: white; -fx-font: 14px 'Arial'; -fx-padding:10;");
+			
+			Color color = getColorByType(ts.getGroup().getType());
+			
+			final Label label = new Label(ts.getGroup().getCourse().getName() + "\n" 
+					+ ts.getRoom());
+			label.setStyle("-fx-background-radius: 5; -fx-background-color: " + "rgba(" + (int) 256 * color.getRed()
+					+ ", " + (int) 256 * color.getGreen() + ", " + (int) 256 * color.getBlue() + ", 0.5);"
+					+ " -fx-text-fill: white; -fx-font: 18px 'Segoe Script'; -fx-padding:10;");
 			label.setWrapText(true);
 			label.setAlignment(Pos.CENTER);
 			label.setTextAlignment(TextAlignment.CENTER);
@@ -168,13 +196,25 @@ public class TimeTableView extends VBox {
 			label.setEffect(dropShadow);
 
 			label.prefWidthProperty().bind(timeTable.widthProperty().divide(5));
-			;
 			label.layoutXProperty().bind(timeTable.widthProperty().divide(5).multiply(ts.getDay()));
 
 			label.prefHeightProperty().bind(timeTable.heightProperty().divide(12).multiply(ts.getLength()));
 			label.layoutYProperty().bind(timeTable.heightProperty().divide(12).multiply(ts.getStarttime()));
 
 			return label;
+		}
+
+		private Color getColorByType(String type) {
+			if(type.equals("AV")) {
+				return Color.LIGHTBLUE;
+			}
+			if(type.equals("LV")) {
+				return Color.DARKORANGE;
+			}
+			if(type.equals("P")) {
+				return Color.LIGHTGREEN;
+			}
+			return Color.ANTIQUEWHITE;
 		}
 	}
 }
