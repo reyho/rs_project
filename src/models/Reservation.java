@@ -37,10 +37,11 @@ public class Reservation implements Serializable
     private Integer    id           ; // Primary Key
 
     private String     type         ;
-    @Temporal(TemporalType.TIMESTAMP)
+    private Float starttime;
+    private Float endtime;
+    @Temporal(TemporalType.DATE)
     private Date       begindatetime ;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date       enddatetime  ;
+    
     //private Integer    reservedbyid ;
     //private Integer    roomid       ;
 
@@ -131,19 +132,13 @@ public class Reservation implements Serializable
      * This field is mapped on the database column "EndDateTime" ( type "DATETIME", NotNull : true ) 
      * @param enddatetime
      */
-    public void setEnddatetime( Date enddatetime )
-    {
-        this.enddatetime = enddatetime;
-    }
+    
     /**
      * Get the "enddatetime" field value
      * This field is mapped on the database column "EndDateTime" ( type "DATETIME", NotNull : true ) 
      * @return the field value
      */
-    public Date getEnddatetime()
-    {
-        return this.enddatetime;
-    }
+    
 
     //--- DATABASE MAPPING : ReservedById ( INT ) 
     /**
@@ -197,8 +192,6 @@ public class Reservation implements Serializable
         sb.append("|");
         sb.append(begindatetime);
         sb.append("|");
-        sb.append(enddatetime);
-        sb.append("|");
         sb.append(reservedBy);
         sb.append("|");
         sb.append(room);
@@ -219,6 +212,22 @@ public class Reservation implements Serializable
 
 	public void setRoom(Room room) {
 		this.room = room;
+	}
+
+	public Float getStarttime() {
+		return starttime;
+	}
+
+	public void setStarttime(Float starttime) {
+		this.starttime = starttime;
+	}
+
+	public Float getEndtime() {
+		return endtime;
+	}
+
+	public void setEndtime(Float endtime) {
+		this.endtime = endtime;
 	}
 
 
