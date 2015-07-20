@@ -45,7 +45,7 @@ public class ReportController {
 
 		"<br>" + "<br>" +
 
-		"<div style=\"text-align:center;\"><span>za mjesec " + currentMonth + " </span><span> " + semestar
+		"<div style=\"text-align:center;\"><span>za " + currentMonth + ". mjesec, </span><span> " + semestar
 				+ " semestar ak.<span> " + currentYear + " godine</span></div>" +
 
 		"<br>" + "<br>" +
@@ -78,8 +78,6 @@ public class ReportController {
 		
 		String content = getContent();
 		
-		
-		
 		String footer = "<!--footer -->" + "<tr>" +
 
 		"<th colspan=\"4\" style=\"text-align:right\">Ukupno sati:&nbsp &nbsp &nbsp </th>" + "<td>" + hoursP + "</td>" + hoursV + "<td>5</td>"
@@ -87,14 +85,14 @@ public class ReportController {
 
 		"</div>" +
 
-		"<br>" + "<br>" + "<br>" +
+		"<br><br><br>" +
 
-		"<div style=\"width:85%;margin:auto;\">" + "<div style=\"float:left;width=300px;\">" + "Izvrsilac:" + AppMain.getUser().getNameAndTitle() + "</div>" +
+		"<div style=\"width:85%;margin:auto;\">" + "<div style=\"float:left;width=300px;\">" + "Izvrsilac:<br>" + AppMain.getUser().getNameAndTitle() + "</div>" +
 
-		"<div style=\"float:right\"> " + "Prodekan za nastavu:" + this.getDean().getNameAndTitle() + "<br>" + "<br>" + "<br>" + "Dekan:" + "</div>"
+		"<div style=\"float:right\"> " + "Prodekan za nastavu:<br>" + this.getDean().getNameAndTitle() + "<br>" + "<br>" + "<br>" + "Dekan:" + "</div>"
 				+ "</div>";
+		
 		try {
-
 			BufferedWriter out = new BufferedWriter(new FileWriter("form.html"));
 			out.write(text + content + footer);
 			out.close();
@@ -115,7 +113,6 @@ public class ReportController {
 		for(int i = 0; i < daysInMonth; i++) {
 			int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - 1;
 			for(TimeSlot t : listT) {
-				System.out.println("Termini out" + t);
 				if(t.getDay() == dayOfWeek) {
 				System.out.println("Termini " + t);
 					float pTime = 0;
@@ -134,9 +131,6 @@ public class ReportController {
 					
 					hoursV += vTime;
 					hoursP += pTime;
-					
-					System.out.println("Termini in" + t);
-					
 				}
 			}
 			calendar.set(currentYear, currentMonth - 1, i);
