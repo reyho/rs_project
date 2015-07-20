@@ -37,6 +37,7 @@ public class TimeTableView extends VBox {
 	ComboBox<Semester> semesterInput;
 	ComboBox<FacultyPersonnel> personnelInput;
 	Button button = new Button("Filter");
+	Button button2 = new Button("Clear filter");
 	
 
 	public TimeTableView() {
@@ -83,8 +84,14 @@ public class TimeTableView extends VBox {
 			timeTable.getChildren().clear();
 			timeTable.getChildren().addAll(getFilteredTimeSlots(r, s, p));
 		});
+		
+		button2.setOnAction(e -> {
+			roomsInput.getSelectionModel().clearSelection();
+			semesterInput.getSelectionModel().clearSelection();
+			personnelInput.getSelectionModel().clearSelection();
+		});
 
-		filters.getChildren().addAll(roomsInput, semesterInput, personnelInput, button);
+		filters.getChildren().addAll(roomsInput, semesterInput, personnelInput, button, button2);
 
 		this.getChildren().addAll(filters, dayLabels, timeSlotsClasses);
 		/*
