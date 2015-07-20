@@ -133,7 +133,7 @@ public class TimeTableView extends VBox {
 		list.add(timeTable.post("19h - 20h", Color.LIGHTGREY));
 
 		for (Label l : list) {
-			//l.prefWidthProperty().bind(dayLabels.widthProperty().divide(6));
+			l.prefWidthProperty().bind(timeSlotsClasses.widthProperty().divide(6));
 			l.prefHeightProperty().bind(timeSlotsClasses.heightProperty().divide(12));
 		
 		}
@@ -169,7 +169,7 @@ public class TimeTableView extends VBox {
 			final Label label = new Label(c);
 			label.setStyle("-fx-background-radius: 5; -fx-background-color: " + "rgba(" + (int) 256 * color.getRed()
 					+ ", " + (int) 256 * color.getGreen() + ", " + (int) 256 * color.getBlue() + ", 0.5);"
-					+ " -fx-text-fill: white; -fx-font: 18px 'Segoe Script'; -fx-padding:10;");
+					+ " -fx-text-fill: white; -fx-font: 13px 'Helvetica'; -fx-padding:10;");
 			label.setWrapText(true);
 			label.setAlignment(Pos.CENTER);
 			label.setTextAlignment(TextAlignment.CENTER);
@@ -185,10 +185,10 @@ public class TimeTableView extends VBox {
 			Color color = getColorByType(ts.getGroup().getType());
 			
 			final Label label = new Label(ts.getGroup().getCourse().getName() + "\n" 
-					+ ts.getRoom());
+					+ ts.getRoom() + " | " + ts.getGroup().getType());
 			label.setStyle("-fx-background-radius: 5; -fx-background-color: " + "rgba(" + (int) 256 * color.getRed()
 					+ ", " + (int) 256 * color.getGreen() + ", " + (int) 256 * color.getBlue() + ", 0.5);"
-					+ " -fx-text-fill: white; -fx-font: 18px 'Segoe Script'; -fx-padding:10;");
+					+ " -fx-text-fill: white; -fx-font: 13px 'Helvetica'; -fx-padding:10;");
 			label.setWrapText(true);
 			label.setAlignment(Pos.CENTER);
 			label.setTextAlignment(TextAlignment.CENTER);
