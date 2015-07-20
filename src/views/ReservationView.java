@@ -114,7 +114,8 @@ public class ReservationView extends VBox{
 		ObservableList<Reservation> allReservations, reservationSelected;
 		allReservations = table.getItems();
 		reservationSelected = table.getSelectionModel().getSelectedItems();
-		if(reservationSelected.get(0).getReservedBy().getId() == AppMain.getUser().getId()){
+		if(reservationSelected.get(0).getReservedBy().getId() == AppMain.getUser().getId() 
+				|| AppMain.getUser().getRole().getPrivilege() > 25){
 			resc.deleteReservation(reservationSelected.get(0).getId());
 			reservationSelected.forEach(allReservations::remove);
 		}
