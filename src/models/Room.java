@@ -137,7 +137,7 @@ public class Room implements Serializable
     //----------------------------------------------------------------------
     // toString METHOD
     //----------------------------------------------------------------------
-    public String toString() { 
+    /*public String toString() { 
         StringBuffer sb = new StringBuffer(); 
         sb.append(id);
         sb.append("|");
@@ -147,6 +147,15 @@ public class Room implements Serializable
         sb.append("|");
         sb.append(building);
         return sb.toString(); 
+    }
+    */
+    public String toString() {
+    	StringBuffer sb = new StringBuffer();
+    	sb.append(building.getName());
+    	sb.append("\n");
+    	sb.append(name);
+    	
+    	return sb.toString();
     }
 
 	public Building getBuilding() {

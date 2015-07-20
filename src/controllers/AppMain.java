@@ -51,7 +51,7 @@ public class AppMain extends Application {
 	public void renderMainLayout() {
 		getMainLayout().setLeft(new NavigationWidget(this, user));
 		getMainLayout().setCenter(new TimeTableView());
-		window.setScene(new Scene(getMainLayout(), 1200, 600));
+		window.setScene(new Scene(getMainLayout(), 1200, 800));
 		window.setTitle("RS_app");
 		window.show();
 	}

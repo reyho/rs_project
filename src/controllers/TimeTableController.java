@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import models.FacultyPersonnel;
 import models.Room;
 import models.Semester;
@@ -57,5 +58,45 @@ public class TimeTableController {
 	    	List<FacultyPersonnel> bList = query.getResultList();
 	    	ObservableList<FacultyPersonnel> b = FXCollections.observableArrayList(bList);
 	    	return b;
+	}
+	public ObservableList<TimeSlot> filterTimeSlots(Room r, Semester s, FacultyPersonnel p) {
+		
+		if(r == null && s == null && p == null) {
+			System.out.println("filter empty");
+			return null;
+		} else {
+			boolean needsAnd = false;
+			String queryBuild = "SELECT e FROM TimeSlot e ";
+			if(r != null) { queryBuild += "JOIN e.room cr "; }
+			if(s != null) { queryBuild += "JOIN e.group.course.semester sem "; }
+			if(p != null) { queryBuild += "JOIN e.group.instructor ins "; }
+			
+			queryBuild += "WHERE ";
+			if(r != null) { 
+				queryBuild += "cr = :r "; 
+				needsAnd = true; 
+			}
+			
+			if(s != null) { 
+				queryBuild += (needsAnd) ? "AND " : "";
+				queryBuild += "sem = :s ";
+				needsAnd = true; 
+			}
+			
+			if(p != null) { 
+				queryBuild += (needsAnd) ? "AND " : "";
+				queryBuild += "ins = :p";
+			}
+			
+			TypedQuery<TimeSlot> query =
+		      		  em.createQuery(queryBuild, TimeSlot.class);
+			if(r != null) {query.setParameter("r", r); }
+			if(s != null) {query.setParameter("s", s);}
+			if(p != null) {query.setParameter("p", p);}
+			List<TimeSlot> bList = query.getResultList();
+			ObservableList<TimeSlot> b = FXCollections.observableArrayList(bList);
+			return b;
+		}
+		
 	}
 }
