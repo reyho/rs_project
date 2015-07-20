@@ -113,7 +113,7 @@ public class Role implements Serializable
         
         sb.append(name);
         
-        return sb.toString(); 
+        return sb.toString();
     } 
 
 

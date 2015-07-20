@@ -3,6 +3,7 @@ package views;
 import java.time.ZoneId;
 import java.util.Date;
 
+import controllers.AppMain;
 import controllers.ReservationController;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -109,11 +110,14 @@ public class ReservationView extends VBox{
 	}
 	
 	private void deleteButtonClicked() {
-		ObservableList<Reservation> allReservations, courseSelected;
+		
+		ObservableList<Reservation> allReservations, reservationSelected;
 		allReservations = table.getItems();
-		courseSelected = table.getSelectionModel().getSelectedItems();
-		resc.deleteReservation(courseSelected.get(0).getId());
-		courseSelected.forEach(allReservations::remove);
+		reservationSelected = table.getSelectionModel().getSelectedItems();
+		if(reservationSelected.get(0).getReservedBy().getId() == AppMain.getUser().getId()){
+			resc.deleteReservation(reservationSelected.get(0).getId());
+			reservationSelected.forEach(allReservations::remove);
+		}
 	}
 
 }

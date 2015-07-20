@@ -14,7 +14,7 @@ import views.TimeTableView;
 public class AppMain extends Application {
 	private Stage window;
 	private BorderPane mainLayout;
-	private FacultyPersonnel user;
+	private static FacultyPersonnel user = null;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -37,7 +37,7 @@ public class AppMain extends Application {
 	}
 	
 	
-	public FacultyPersonnel getUser() {
+	public static FacultyPersonnel getUser() {
 		return user;
 	}
 
