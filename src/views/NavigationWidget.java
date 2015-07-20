@@ -38,7 +38,7 @@ public class NavigationWidget extends VBox{
 		Label label2 = new Label("Faculty Section");
 		// item that can be selected in the faculty list
 		ObservableList<String> itemsFaculty =FXCollections.observableArrayList (
-		    "Single", "Double", "Suite", "Family App");
+		    "Reports", "Reservations");
 		listFaculty.setItems(itemsFaculty);
 		listFaculty.setPrefHeight(200);
 		listFaculty.setOnMouseClicked(e->{
@@ -100,12 +100,11 @@ public class NavigationWidget extends VBox{
 		// Load views corresponding to list labels
 		switch (selectedIndex) {
 		case 0:
-			
+			appMain.setContentPane(new ReportView());
 			break;
 		case 1:
-			
+			appMain.setContentPane(new ReservationView());
 			break;
-
 		default:
 			break;
 		}
@@ -138,9 +137,6 @@ public class NavigationWidget extends VBox{
 			break;
 		case 7:
 			appMain.setContentPane(new DepartmentView());
-			break;
-		case 8:
-			appMain.setContentPane(new ReservationView());
 			break;
 		default:
 			break;
