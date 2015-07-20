@@ -11,7 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import models.Department;
-import models.Student;
 
 public class DepartmentView extends VBox{
 	
@@ -19,7 +18,9 @@ public class DepartmentView extends VBox{
 	TextField nameInput, departmentchiefidInput;
 	DepartmentController dc = new DepartmentController();
 	
+	@SuppressWarnings("unchecked")
 	public DepartmentView(){
+		this.setPadding(new Insets(15));
 		
 		TableColumn<Department, String> nameColumn = new TableColumn<>("Name");		
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -40,7 +41,7 @@ public class DepartmentView extends VBox{
 		deleteButton.setOnAction(e -> deleteButtonClicked());
 		deleteButton.setMinWidth(50);
 		
-		HBox hBox = new HBox();
+		HBox hBox = new HBox(10);
 		hBox.setPadding(new Insets(10, 10, 10, 10));
 		hBox.setSpacing(10);
 		hBox.getChildren().addAll(nameInput, departmentchiefidInput, addButton, deleteButton);

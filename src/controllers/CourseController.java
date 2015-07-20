@@ -10,28 +10,17 @@ import javax.persistence.TypedQuery;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import models.Building;
 import models.Course;
 import models.Department;
 import models.FacultyPersonnel;
-import models.Role;
 import models.Semester;
 
 public class CourseController {
 	private EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "RS_Project" );
 	private EntityManager em = emfactory.createEntityManager();
     private EntityTransaction tx = em.getTransaction();
-    
-    public static void main(String[] args) {
-    	CourseController cc = new CourseController();
-		//bc.createCourse("TT_course_03", 35, bc.em.find(Building.class, 101));
-    	//System.out.println(bc.findCourseByName("TT_build_02"));
-    	//bc.deleteCourse(bc.findCourseByName("TT_build_02").getId());
-    	//System.out.println(bc.getAllBuildings().get(0));
-	}
-    
-    
-    
+
+
     public Course createCourse(String name, Byte required, Byte nolectures, Byte noaudit, Byte nolab, Semester semester, Department department) {
     	Course r = new Course();
     	// id is automatically set

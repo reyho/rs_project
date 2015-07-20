@@ -7,13 +7,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import models.Department;
 import models.Group;
 import models.Room;
-import models.Student;
 import models.TimeSlot;
 
 public class TimeSlotController {

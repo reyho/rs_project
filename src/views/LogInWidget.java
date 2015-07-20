@@ -13,9 +13,11 @@ import models.FacultyPersonnel;
 public class LogInWidget extends GridPane {
 	AppMain appMain;
 	
+	@SuppressWarnings("static-access")
 	public LogInWidget(AppMain app) {
 		appMain = app;
 		
+		this.setStyle(" -fx-background-color:#9bdfd4;");
 		this.setPadding(new Insets(10,10,10,10));
 		this.setVgap(8);
 		this.setHgap(10);

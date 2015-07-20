@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
@@ -19,7 +18,6 @@ import models.TimeSlot;
 public class ReportController {
 	private EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("RS_Project");
 	private EntityManager em = emfactory.createEntityManager();
-	private EntityTransaction tx = em.getTransaction();
 	
 	float hoursV = 0;
 	float hoursP = 0;

@@ -16,11 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import models.Course;
 import models.FacultyPersonnel;
 import models.Reservation;
 import models.Room;
-import models.Semester;
 
 public class ReservationView extends VBox{
 	
@@ -32,7 +30,9 @@ public class ReservationView extends VBox{
 	Date date;
 	ReservationController resc = new ReservationController();
 	
+	@SuppressWarnings("unchecked")
 	public ReservationView(){
+		this.setPadding(new Insets(15));
 		
 		TableColumn<Reservation, String> typeColumn = new TableColumn<>("Type");		
 		typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
@@ -78,7 +78,7 @@ public class ReservationView extends VBox{
 		deleteButton.setOnAction(e -> deleteButtonClicked());
 		deleteButton.setMinWidth(50);
 		
-		HBox hBox = new HBox();
+		HBox hBox = new HBox(10);
 		hBox.setPadding(new Insets(10, 10, 10, 10));
 		hBox.setSpacing(10);
 		hBox.getChildren().addAll(typeInput, starttimeInput, endtimeInput, begindateInput, 

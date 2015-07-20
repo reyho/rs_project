@@ -11,9 +11,6 @@ import javax.persistence.TypedQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Department;
-import models.Semester;
-import models.Student;
-
 public class DepartmentController {
 	EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "RS_Project" );
 	EntityManager em = emfactory.createEntityManager();

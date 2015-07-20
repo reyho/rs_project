@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import models.FacultyPersonnel;
-import views.BuildingView;
 import views.LogInWidget;
 import views.NavigationWidget;
 import views.TimeTableView;
@@ -42,6 +41,7 @@ public class AppMain extends Application {
 	}
 
 
+	@SuppressWarnings("static-access")
 	public void setUser(FacultyPersonnel user) {
 		this.user = user;
 	}

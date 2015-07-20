@@ -1,7 +1,6 @@
 package views;
 
 import controllers.RoomController;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -24,7 +23,10 @@ public class RoomView extends VBox{
 	
 	
 	
+	@SuppressWarnings("unchecked")
 	public RoomView() {
+		this.setPadding(new Insets(15));
+		
 		TableColumn<Room, String> nameColumn = new TableColumn<>("Name");
 		nameColumn.setMinWidth(200);
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -59,7 +61,7 @@ public class RoomView extends VBox{
 		Button deleteButton = new Button("Delete");
 		deleteButton.setOnAction(e -> deleteButtonClicked());
 		
-		HBox hBox = new HBox();
+		HBox hBox = new HBox(10);
 		hBox.setPadding(new Insets(10, 10, 10, 10));
 		hBox.setSpacing(10);
 		hBox.getChildren().addAll(nameInput, capacityInput, buildingInput, addButton, deleteButton);

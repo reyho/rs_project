@@ -1,14 +1,11 @@
 package views;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
 import controllers.TimeTableController;
-import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -27,7 +24,7 @@ import models.TimeSlot;
 public class TimeTableView extends VBox {
 	HBox dayLabels = new HBox();
 	HBox timeSlotsClasses = new HBox();
-	HBox filters = new HBox();
+	HBox filters = new HBox(10);
 
 	VBox timeSlotLabels = new VBox();
 	TimeTable timeTable = new TimeTable();
@@ -45,11 +42,13 @@ public class TimeTableView extends VBox {
 		this.setPrefSize(1000, 800);
 		this.setMinWidth(600);
 		this.setMinHeight(400);
+		//this.setPadding(new Insets(15));
 
 		// vertical partitoning
 		dayLabels.prefHeightProperty().bind(this.heightProperty().divide(14));
 		timeSlotsClasses.prefHeightProperty().bind(this.heightProperty().divide(14).multiply(12));
 		filters.prefHeightProperty().bind(this.heightProperty().divide(14));
+		filters.setPadding(new Insets(10));
 		// horizontal partitioning
 		timeTable.prefWidthProperty().bind(timeSlotsClasses.widthProperty().divide(6).multiply(5));
 		timeSlotLabels.prefWidthProperty().bind(timeSlotsClasses.widthProperty().divide(6));
@@ -110,6 +109,7 @@ public class TimeTableView extends VBox {
 		return  list;
 	}
 
+	@SuppressWarnings("unused")
 	private List<Label> getTimeSlots() {
 
 		// controller gets timeslots
@@ -171,6 +171,7 @@ public class TimeTableView extends VBox {
 		TimeTable() {
 			setId("TimeTable");
 		}
+		
 
 		Label post(String c, Color color) {
 			final Label label = new Label(c);
@@ -211,12 +212,13 @@ public class TimeTableView extends VBox {
 			return label;
 		}
 
+		// Modify the look of the timetable classes here
 		private Color getColorByType(String type) {
 			if(type.equals("AV")) {
 				return Color.LIGHTBLUE;
 			}
 			if(type.equals("LV")) {
-				return Color.DARKORANGE;
+				return Color.INDIANRED;
 			}
 			if(type.equals("P")) {
 				return Color.LIGHTGREEN;

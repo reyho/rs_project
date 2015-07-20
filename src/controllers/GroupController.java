@@ -10,12 +10,10 @@ import javax.persistence.TypedQuery;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import models.Building;
 import models.Course;
 import models.Group;
 import models.Department;
 import models.FacultyPersonnel;
-import models.Role;
 import models.Semester;
 import models.Student;
 
@@ -23,15 +21,6 @@ public class GroupController {
 	private EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "RS_Project" );
 	private EntityManager em = emfactory.createEntityManager();
     private EntityTransaction tx = em.getTransaction();
-    
-    public static void main(String[] args) {
-    	GroupController gc = new GroupController();
-		//bc.createGroup("TT_group_03", 35, bc.em.find(Building.class, 101));
-    	//System.out.println(bc.findGroupByName("TT_build_02"));
-    	//bc.deleteGroup(bc.findGroupByName("TT_build_02").getId());
-    	//System.out.println(bc.getAllBuildings().get(0));
-	}
-    
     
     
     public Group createGroup(String type, String name, FacultyPersonnel instructor, Course course) {

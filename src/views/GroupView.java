@@ -1,7 +1,5 @@
 package views;
 
-import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
-
 import controllers.GroupController;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -14,10 +12,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import models.Course;
-import models.Department;
 import models.FacultyPersonnel;
 import models.Group;
-import models.Semester;
 import models.Student;
 
 public class GroupView extends VBox{
@@ -33,7 +29,9 @@ public class GroupView extends VBox{
 	ObservableList<Group> groupSelected2;
 	GroupController gc = new GroupController();
 	
+	@SuppressWarnings("unchecked")
 	public GroupView(){
+		this.setPadding(new Insets(15));
 		
 		TableColumn<Group, String> typeColumn = new TableColumn<>("Type");		
 		typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
@@ -85,13 +83,13 @@ public class GroupView extends VBox{
 		deleteButton2.setOnAction(e -> deleteButtonClicked2());
 		deleteButton2.setMinWidth(50);
 		
-		HBox hBox = new HBox();
+		HBox hBox = new HBox(10);
 		hBox.setPadding(new Insets(10, 10, 10, 10));
 		hBox.setSpacing(10);
 		hBox.getChildren().addAll(typeInput, nameInput, personnelInput, 
 				courseInput, addButton, deleteButton);
 		
-		HBox hBox2 = new HBox();
+		HBox hBox2 = new HBox(10);
 		hBox2.setPadding(new Insets(10, 10, 10, 10));
 		hBox2.setSpacing(10);
 		hBox2.getChildren().addAll(studentInput, addButton2, deleteButton2);

@@ -1,9 +1,6 @@
 package views;
 
-import java.util.List;
-
 import controllers.CourseController;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -14,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import models.Building;
 import models.Course;
 import models.Department;
 import models.FacultyPersonnel;
@@ -34,7 +30,10 @@ public class CourseView extends VBox{
 	
 	
 	
+	@SuppressWarnings("unchecked")
 	public CourseView() {
+		this.setPadding(new Insets(15));
+		
 		TableColumn<Course, String> nameColumn = new TableColumn<>("Name");		
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 		
@@ -105,13 +104,13 @@ public class CourseView extends VBox{
 		deleteButton2.setOnAction(e -> deleteButtonClicked2());
 		deleteButton2.setMinWidth(50);
 		
-		HBox hBox = new HBox();
+		HBox hBox = new HBox(10);
 		hBox.setPadding(new Insets(10, 10, 10, 10));
 		hBox.setSpacing(10);
 		hBox.getChildren().addAll(nameInput, requiredInput, nolecturesInput, 
 				noauditInput, nolabInput, semesterInput, departmentInput, addButton, deleteButton);
 		
-		HBox hBox2 = new HBox();
+		HBox hBox2 = new HBox(10);
 		hBox2.setPadding(new Insets(10, 10, 10, 10));
 		hBox2.setSpacing(10);
 		hBox2.getChildren().addAll(instructorsInput, addButton2, deleteButton2);

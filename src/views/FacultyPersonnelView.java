@@ -1,6 +1,5 @@
 package views;
 
-import controllers.CourseController;
 import controllers.FacultyPersonnelController;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -12,11 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import models.Course;
 import models.Department;
 import models.FacultyPersonnel;
 import models.Role;
-import models.Semester;
 
 public class FacultyPersonnelView extends VBox{
 	TableView<FacultyPersonnel> table;
@@ -26,7 +23,10 @@ public class FacultyPersonnelView extends VBox{
 	FacultyPersonnelController fpc = new FacultyPersonnelController(); 
 	
 	
+	@SuppressWarnings("unchecked")
 	public FacultyPersonnelView(){
+		this.setPadding(new Insets(15));
+		
 		TableColumn<FacultyPersonnel, String> nameColumn = new TableColumn<>("Name");		
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 		
@@ -78,7 +78,7 @@ public class FacultyPersonnelView extends VBox{
 		deleteButton.setOnAction(e -> deleteButtonClicked());
 		deleteButton.setMinWidth(50);
 		
-		HBox hBox = new HBox();
+		HBox hBox = new HBox(10);
 		hBox.setPadding(new Insets(10, 10, 10, 10));
 		hBox.setSpacing(10);
 		hBox.getChildren().addAll(nameInput, lastnameInput, usernameInput, passwordInput, 

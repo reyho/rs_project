@@ -11,12 +11,9 @@ import javax.persistence.TypedQuery;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import models.Department;
 import models.FacultyPersonnel;
 import models.Reservation;
 import models.Room;
-import models.Student;
-
 public class ReservationController {
 	
 	EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "RS_Project" );

@@ -12,8 +12,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import models.Department;
-import models.FacultyPersonnel;
-import models.Role;
 import models.Semester;
 import models.Student;
 
@@ -25,7 +23,10 @@ public class StudentView extends VBox{
 	ComboBox<Department> departmentInput;
 	StudentController sc = new StudentController();
 	
+	@SuppressWarnings("unchecked")
 	public StudentView(){
+		this.setPadding(new Insets(15));
+		
 		TableColumn<Student, String> nameColumn = new TableColumn<>("Name");		
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 		
@@ -67,7 +68,7 @@ public class StudentView extends VBox{
 		deleteButton.setOnAction(e -> deleteButtonClicked());
 		deleteButton.setMinWidth(50);
 		
-		HBox hBox = new HBox();
+		HBox hBox = new HBox(10);
 		hBox.setPadding(new Insets(10, 10, 10, 10));
 		hBox.setSpacing(10);
 		hBox.getChildren().addAll(nameInput, lastnameInput, studentidInput, 

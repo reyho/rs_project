@@ -21,6 +21,8 @@ public class BuildingView extends VBox{
 	
 	
 	public BuildingView() {
+		this.setPadding(new Insets(15));
+		
 		TableColumn<Building, String> nameColumn = new TableColumn<>("Name");
 		nameColumn.setMinWidth(200);
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -35,7 +37,7 @@ public class BuildingView extends VBox{
 		Button deleteButton = new Button("Delete");
 		deleteButton.setOnAction(e -> deleteButtonClicked());
 		
-		HBox hBox = new HBox();
+		HBox hBox = new HBox(10);
 		hBox.setPadding(new Insets(10, 10, 10, 10));
 		hBox.setSpacing(10);
 		hBox.getChildren().addAll(nameInput, addButton, deleteButton);

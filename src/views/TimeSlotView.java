@@ -11,11 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import models.Course;
-import models.Department;
 import models.Group;
 import models.Room;
-import models.Semester;
 import models.TimeSlot;
 
 public class TimeSlotView extends VBox{
@@ -26,7 +23,9 @@ public class TimeSlotView extends VBox{
 	ComboBox<Group> groupInput;
 	TimeSlotController tsc = new TimeSlotController();
 	
+	@SuppressWarnings("unchecked")
 	public TimeSlotView(){
+		this.setPadding(new Insets(15));
 		
 		TableColumn<TimeSlot, Float> starttimeColumn = new TableColumn<>("Starttime");		
 		starttimeColumn.setCellValueFactory(new PropertyValueFactory<>("starttime"));
@@ -69,7 +68,7 @@ public class TimeSlotView extends VBox{
 		deleteButton.setOnAction(e -> deleteButtonClicked());
 		deleteButton.setMinWidth(50);
 		
-		HBox hBox = new HBox();
+		HBox hBox = new HBox(10);
 		hBox.setPadding(new Insets(10, 10, 10, 10));
 		hBox.setSpacing(10);
 		hBox.getChildren().addAll(starttimeInput, lengthInput, dayInput, roomInput, groupInput, addButton, deleteButton);

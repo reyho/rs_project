@@ -18,14 +18,6 @@ public class RoomController {
 	private EntityManager em = emfactory.createEntityManager();
     private EntityTransaction tx = em.getTransaction();
     
-    public static void main(String[] args) {
-    	RoomController bc = new RoomController();
-		//bc.createRoom("TT_room_03", 35, bc.em.find(Building.class, 101));
-    	//System.out.println(bc.findRoomByName("TT_build_02"));
-    	//bc.deleteRoom(bc.findRoomByName("TT_build_02").getId());
-    	//System.out.println(bc.getAllBuildings().get(0));
-	}
-    
     public Room createRoom(String name, int capacity, Building building) {
     	Room r = new Room();
     	// id is automatically set

@@ -15,18 +15,21 @@ public class NavigationWidget extends VBox{
 	ListView<String> listAdmin  = new ListView<String>();
 	AppMain appMain;
 	
+	@SuppressWarnings( "static-access")
 	public NavigationWidget(AppMain app, FacultyPersonnel user) {
 		appMain = app;
 		// Set style of nav pane
 		this.setPadding(new Insets(15));
+		this.setStyle("-fx-background-color: gray;");
 		
 		//Available to all
 		Label label1 = new Label("Public Section");
+		label1.setStyle(" -fx-text-fill: black; -fx-font: 14px 'Helvetica'; -fx-padding:4;");
 		// item that can be selected in the public list
 		ObservableList<String> itemsPublic =FXCollections.observableArrayList (
-		    "TimeTable", "View Groups");
+		    "TimeTable");
 		listPublic.setItems(itemsPublic);
-		listPublic.setPrefHeight(50);
+		listPublic.setPrefHeight(30);
 		listPublic.setOnMouseClicked(e->{
 			handleNavPublic(listPublic.getSelectionModel().getSelectedIndex());
 			// clear the selection in other lists
@@ -36,11 +39,12 @@ public class NavigationWidget extends VBox{
 		
 		// Available only to Faculty members
 		Label label2 = new Label("Faculty Section");
+		label2.setStyle(" -fx-text-fill: black; -fx-font: 14px 'Helvetica'; -fx-padding:4;");
 		// item that can be selected in the faculty list
 		ObservableList<String> itemsFaculty =FXCollections.observableArrayList (
 		    "Reports", "Reservations");
 		listFaculty.setItems(itemsFaculty);
-		listFaculty.setPrefHeight(200);
+		listFaculty.setPrefHeight(50);
 		listFaculty.setOnMouseClicked(e->{
 			handleNavFaculty(listFaculty.getSelectionModel().getSelectedIndex());
 			// clear the selection in other lists
@@ -51,12 +55,13 @@ public class NavigationWidget extends VBox{
 		
 		// Available only to Dean
 		Label label3 = new Label("Admin Section");
+		label3.setStyle(" -fx-text-fill: black; -fx-font: 14px 'Helvetica'; -fx-padding:4;");
 		// item that can be selected in the admin list
 		ObservableList<String> itemsAdmin =FXCollections.observableArrayList (
-		    "Buildings", "Rooms", "Courses", "FacultyPersonnel", "Students", "Groups", "TimeSlots", "Departments", 
-		    "Reservations");
+		    "Buildings", "Rooms", "Courses", "FacultyPersonnel", "Students", "Groups", "TimeSlots", "Departments"
+		    );
 		listAdmin.setItems(itemsAdmin);
-		listAdmin.setPrefHeight(200);
+		listAdmin.setPrefHeight(250);
 		listAdmin.setOnMouseClicked(e->{
 			handleNavAdmin(listAdmin.getSelectionModel().getSelectedIndex());
 			// clear the selection in other lists
@@ -87,10 +92,6 @@ public class NavigationWidget extends VBox{
 		case 0:
 			appMain.setContentPane(new TimeTableView());
 			break;
-		case 1:
-			
-			break;
-
 		default:
 			break;
 		}
